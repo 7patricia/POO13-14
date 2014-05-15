@@ -167,15 +167,23 @@ public class Utilizador
         this.actividades.put(a.getData(),a);
     }
     //Métodos
-    public TreeMap<String,Actividade> ultimasDez()
+    public ArrayList<Actividade> ultimasDez()
     {
-        
+       ArrayList<Actividade> listaDez = new ArrayList<Actividade>();
+       for(int i=0;i<10;i++){
+        for(String key : actividades.keySet())
+        {
+            listaDez.add((actividades.get(key)));
+        }
+    }
+        return listaDez;
     }
     
-    public TreeMap<String,Actividade> ultimasDezAmigo(Utilizador u)
+    public ArrayList<Actividade> ultimasDezAmigo(Utilizador u)
     {
-    
-    }
+        if(this.amigos.contains(u)) return u.ultimasDez();
+        else return new ArrayList<Actividade>();
+    }                 
     
     //ToString, Equals e Clone
     public String toString()
