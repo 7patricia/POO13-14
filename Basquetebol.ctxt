@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Basquetebol()
+comment1.params=d\ c
+comment1.target=Basquetebol(double,\ int)
+comment10.params=
+comment10.target=Basquetebol\ clone()
+comment2.params=cm\ c\ rc\ l\ dur\ data\ d\ x
+comment2.target=Basquetebol(java.lang.String,\ double,\ double,\ java.lang.String,\ long,\ java.lang.String,\ double,\ int)
+comment3.params=a\ d\ c
+comment3.target=Basquetebol(Actividade,\ double,\ int)
+comment4.params=
+comment4.target=double\ getDistancia()
+comment5.params=
+comment5.target=int\ getCestos()
+comment6.params=d
+comment6.target=void\ setDistancia(double)
+comment7.params=c
+comment7.target=void\ setCestos(int)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment9.params=o
+comment9.target=boolean\ equals(java.lang.Object)
+numComments=11
