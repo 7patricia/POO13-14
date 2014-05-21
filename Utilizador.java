@@ -167,24 +167,41 @@ public class Utilizador
         this.actividades.put(a.getData(),a);
     }
     //Métodos
+    /**
+     * Função que devolve a lista das últimas 10 atividades de um utilizador
+     */
     public ArrayList<Actividade> ultimasDez()
     {
-       ArrayList<Actividade> listaDez = new ArrayList<Actividade>();
-       for(int i=0;i<10;i++){
-        for(String key : actividades.keySet())
-        {
-            listaDez.add((actividades.get(key)));
+        ArrayList<Actividade> listaDez = new ArrayList<Actividade>();
+        for(int i=0;i<10;i++){
+            for(String key : actividades.keySet())
+            {
+                listaDez.add((actividades.get(key)));
+            }
         }
-    }
         return listaDez;
     }
-    
+
+    /**
+     * Função que devolve as últimas dez atividades de um utilizador se 
+     * este pertencer à lista de amigos do utlizador em questão
+     */
     public ArrayList<Actividade> ultimasDezAmigo(Utilizador u)
     {
         if(this.amigos.contains(u)) return u.ultimasDez();
         else return new ArrayList<Actividade>();
-    }                 
-    
+    } 
+
+    /**
+     * Função que verifica se as credenciais passadas como argumento
+     * pertencem a este utilizador
+     */
+    public boolean verificaDados(String mail, String pass)
+    {
+        if (this.email == mail && this.password == pass) return true;
+        else return false;
+    }
+
     //ToString, Equals e Clone
     public String toString()
     {

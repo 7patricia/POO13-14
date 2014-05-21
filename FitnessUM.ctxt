@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=mail\ pass
+comment0.target=boolean\ checkUser(java.lang.String,\ java.lang.String)
+comment0.text=\n\ Fun\u00E7\u00E3o\ que\ verifica\ se\ um\ dado\ e-mail\ e\ password\ correspondem\ a\ um\ utilizador\ \n\ registado\n
+comment1.params=mail\ pass
+comment1.target=boolean\ registar(java.lang.String,\ java.lang.String)
+comment1.text=\n\ Fun\u00E7\u00E3o\ que\ verifica\ se\ um\ utilizador\ j\u00E1\ est\u00E1\ registado\ e\ se\ n\u00E3o\ estiver\ \n\ adiciona-o\ \u00E0\ lista\ de\ registos\n
+numComments=2
