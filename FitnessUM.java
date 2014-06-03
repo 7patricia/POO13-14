@@ -86,6 +86,7 @@ public class FitnessUM
     {
         utilizadorLigado.setActividade(a);
     }
+
     /**
      * Função que retorna as 10 actividades mais recentes do utilizador ligado
      */
@@ -93,6 +94,7 @@ public class FitnessUM
     {
         return utilizadorLigado.ultimasDez();
     }
+
     /**
      * Função que retorna as 10 actividades mais recentes de um amigo do utilizador ligado
      */
@@ -100,4 +102,56 @@ public class FitnessUM
     {
         return utilizadorLigado.ultimasDezAmigo(amigo);
     }
+
+    /**
+     * Função que mostra os dados do utilizador ligado
+     */
+    public String dados_util()
+    {
+        return utilizadorLigado.toString();
+    }
+
+    /** 
+     * Função que mostra dados de um amigo
+     */
+    public String dados_amigo(Utilizador amigo)
+    {
+        if (utilizadorLigado.getAmigos().contains(amigo))
+            return amigo.toString();
+        else
+            return "";
+    }
+
+    /**
+     * Função que remove uma actividade da lista de actividades do utilizador ligado
+     */
+    public boolean removeActividade(Actividade a)
+    {
+        if(this.utilizadorLigado.getActividades().contains(a))
+        {
+            this.utilizadorLigado.remAct(a);
+            return true;
+        }
+        else
+            return false;
+    }
+
+    /**
+     * Função que retorna as actividades do utilizador ligado num determinado mês
+     */
+    /**public Tree
+     * Map<String,Actividade>(String mes)
+    {
+    return utilizadorLigado.actividadeMes(mes);
+    }*/
+    
+    /**
+     * Função que retorna as actividades do utilizador ligado num determinado ano
+     */
+    /**public Tree
+     * Map<String,Actividade>(String ano)
+    {
+    return utilizadorLigado.actividadeAno(ano);
+    }*/
 }
+

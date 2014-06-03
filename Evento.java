@@ -10,9 +10,10 @@ public class Evento
 {
     // Variáveis de Instância
     private String nome;
+    
     private String data;
     private ArrayList<Utilizador> inscritos;
-    private int numInscritos;
+    private int numLimite;
     private String dataLim;
     //Construtores
     public Evento()
@@ -20,7 +21,7 @@ public class Evento
         this.nome = "";
         this.data = "";
         this.inscritos = new ArrayList<Utilizador>();
-        this.numInscritos = 0;
+        this.numLimite = 0;
         this.dataLim = "";
     }
 
@@ -29,13 +30,13 @@ public class Evento
         this.nome = n;
         this.data = d;
         this.inscritos = new ArrayList<Utilizador>(i);
-        this.numInscritos = x;
+        this.numLimite = x;
         this.dataLim = dl;
     }
 
     public Evento(Evento e)
     {
-        this(e.getNome(), e.getData(), e.getInscritos(), e.getNumInscritos(), e.getDataLim());
+        this(e.getNome(), e.getData(), e.getInscritos(), e.getNumLimite(), e.getDataLim());
     }
     //Métodos de Instância
     public String getNome()
@@ -56,9 +57,9 @@ public class Evento
         return res;
     }  
 
-    public int getNumInscritos()
+    public int getNumLimite()
     {
-        return this.numInscritos;
+        return this.numLimite;
     }
 
     public String getDataLim()
@@ -85,9 +86,9 @@ public class Evento
         }
     }
 
-    public void setNumInscritos(int i)
+    public void setNumLimite(int i)
     {
-        this.numInscritos = i;
+        this.numLimite = i;
     }
 
     public void setDataLim(String d)
@@ -95,6 +96,8 @@ public class Evento
         this.dataLim = d;
     }
 
+    
+    
     //ToString Equals e Clone
     public String toString()
     {
@@ -120,6 +123,6 @@ public class Evento
 
     public Evento clone() 
     {
-        return new Evento(this.nome, this.data, this.inscritos, this.numInscritos, this.dataLim);
+        return new Evento(this.nome, this.data, this.inscritos, this.numLimite, this.dataLim);
     }
 }

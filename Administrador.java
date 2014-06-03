@@ -75,7 +75,24 @@ public class Administrador
     {
         int i;
         for(i=0;i<u.size()-1;i++)
-            this.utilizadores.add(u.get(i));
+            this.utilizadores.add(u.get(i).clone());
+    }
+
+    /**
+     * Função para aceitar ou rejeitar a inscrição de um utilizador num evento
+     */
+    public void aceitaEvento(Evento e, Utilizador u)
+    {
+        if(e.getNumLimite()<= e.getInscritos().size())
+        {
+            u.removeInscrito(e);
+        }
+        else 
+        {
+            u.removePendente(e);
+            u.adicionaInscrito(e.clone());
+            e.getInscritos().add(u.clone());
+        }
     }
 
     //Equals, toString, Clone
@@ -89,16 +106,18 @@ public class Administrador
         Administrador a = (Administrador) o;
         return(a.getEmail() == this.email);
     }
+
     public Administrador clone()
 
     {
         return new Administrador(this.nome, this.email, this.password, this.utilizadores);
     }
-      public String toString()
+
+    public String toString()
     {
         StringBuilder s = new StringBuilder("Administrador: \n");   
         s.append(this.nome);
         return s.toString();
     }
-    
+
 }

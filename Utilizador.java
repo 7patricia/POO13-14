@@ -24,6 +24,8 @@ public class Utilizador
     private List<Utilizador> amigos;
     private TreeMap<String,Actividade> actividades;
     private ArrayList<ArrayList<Actividade>> records;
+    private ArrayList<Evento> eventosInscrito;
+    private ArrayList<Evento> eventosPendentes;
     //Construtores
     public Utilizador()
     {
@@ -110,9 +112,27 @@ public class Utilizador
         ArrayList<Actividade> lista = new ArrayList<Actividade>();
         for(String key : actividades.keySet())
         {
-            lista.add((actividades.get(key)));
+            lista.add((actividades.get(key)).clone());
         }
         return lista;
+    }
+
+    public ArrayList getEventosInscrito()
+    {
+        ArrayList<Evento> res = new ArrayList<Evento>();
+        for(Evento e : this.eventosInscrito)
+            for(int i =0;i<eventosInscrito.size()-1;i++)
+                res.add(i,e.clone());
+        return res;
+    }
+
+    public ArrayList getEventosPendentes()
+    {
+        ArrayList<Evento> res = new ArrayList<Evento>();
+        for(Evento e : this.eventosPendentes)
+            for(int i =0;i<eventosPendentes.size()-1;i++)
+                res.add(i,e.clone());
+        return res;
     }
 
     public void setNome(String n)
@@ -159,13 +179,28 @@ public class Utilizador
     {
         int i;
         for(i=0;i<a.size()-1;i++)
-            this.amigos.add(a.get(i));
+            this.amigos.add(a.get(i).clone());
     }
 
     public void setActividade(Actividade a)
     {
-        this.actividades.put(a.getData(),a);
+        this.actividades.put(a.getData(),a.clone());
     }
+
+    public void setEventosInscrito(ArrayList<Evento> e)
+    {
+        int i;
+        for(i=0;i<e.size()-1;i++)
+            this.eventosInscrito.add(e.get(i).clone());
+    }
+
+    public void setEventosPendentes(ArrayList<Evento> e)
+    {
+        int i;
+        for(i=0;i<e.size()-1;i++)
+            this.eventosPendentes.add(e.get(i).clone());
+    }
+
     //Métodos
     /**
      * Função que devolve a lista das últimas 10 atividades de um utilizador
@@ -176,7 +211,7 @@ public class Utilizador
         for(int i=0;i<10;i++){
             for(String key : actividades.keySet())
             {
-                listaDez.add((actividades.get(key)));
+                listaDez.add((actividades.get(key)).clone());
             }
         }
         return listaDez;
@@ -201,6 +236,92 @@ public class Utilizador
         if (this.email == mail && this.password == pass) return true;
         else return false;
     }
+
+    /**
+     * Função que devolve a lista de actividades de um utilizador num
+     * determinado mês
+     */
+    /** public TreeMap<String,Actividade> actividadesMes(String mes)
+    {
+    TreeMap<String,Actividade> res = new TreeMap<String,Actividade>();
+    if(mes == MES)
+    res.put(mes,qqr coisa);
+    return res;
+    }
+     */
+    
+     /**
+     * Função que devolve a lista de actividades de um utilizador num
+     * determinado ano
+     */
+    /** public TreeMap<String,Actividade> actividadesAno(String ano)
+    {
+    TreeMap<String,Actividade> res = new TreeMap<String,Actividade>();
+    if(ano == ANO)
+    res.put(ano,qqr coisa);
+    return res;
+    }
+     */
+
+    /**
+     * Função que remove um Evento da lista de eventos pendentes
+     */
+    public void removePendente(Evento e)
+    {
+        for(int i=0; i<eventosPendentes.size()-1;i++)
+            if(e == this.eventosPendentes.get(i))
+                eventosPendentes.remove(i);
+    }
+
+    /**
+     * Função que remove um Evento da lista de eventos em que está inscrito
+     */
+    public void removeInscrito(Evento e)
+    {
+        for(int i=0; i<eventosInscrito.size()-1;i++)
+            if(e == this.eventosInscrito.get(i))
+                eventosInscrito.remove(i);
+    }
+
+    /**
+     * Função que adiciona um Evento à lista de eventos pendentes
+     */
+    public void adicionaPendente(Evento e)
+    {
+        for(int i=0; i<eventosPendentes.size()-1;i++)
+            if(e == this.eventosPendentes.get(i))
+                this.eventosPendentes.add(e.clone());
+    }
+
+    /**
+     * Função que adiciona um Evento à lista de eventos em que está inscrito
+     */
+    public void adicionaInscrito(Evento e)
+    {
+        for(int i=0; i<eventosInscrito.size()-1;i++)
+            if(e == this.eventosInscrito.get(i))
+                this.eventosInscrito.add(e.clone());
+    }
+
+    /**
+     * Função que remove uma actividade da lista de actividades do utilizador
+     */
+
+    public void remAct(Actividade a)
+    {
+        this.actividades.remove(a);
+    }
+    
+    /**
+     * Função que adiciona um record à lista
+     */
+    
+    
+    /**
+     * Função que remove um record da lista
+     */
+    
+
 
     //ToString, Equals e Clone
     public String toString()

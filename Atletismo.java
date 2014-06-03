@@ -5,42 +5,38 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Atletismo extends Actividade
+public class Atletismo extends Actividade implements ActVelocidade
 {
-  //Variáveis de Instância
-  private double distancia;
-  private double altitude;
-  private String tipo;
-  //Construtores
+    //Variáveis de Instância
+    private double distancia;
+    private double altitude;
+
+    //Construtores
     public Atletismo()
     {
         super();
         this.distancia = 0.0;
         this.altitude = 0.0;
-        this.tipo = "";
     }
 
-    public Atletismo(double d, double a, String t)
+    public Atletismo(double d, double a)
     {
         this.distancia = d;
         this.altitude = a;
-        this.tipo = t;
     }
 
-    public Atletismo(String cm, double c, double rc, String l, long dur, String data, double d, double a, String t)
+    public Atletismo(String cm, double c, double rc, String l, long dur, String data, double d, double a)
     {
         super(cm,c,rc,l,dur,data);
         this.distancia = d;
         this.altitude = a;
-        this.tipo = t;
     }
 
-    public Atletismo(Actividade a,double d, double x, String t)
+    public Atletismo(Actividade a,double d, double x)
     {
         super(a);
         this.distancia = d;
         this.altitude = x;
-        this.tipo = t;
     }
     //Métodos de Instância
     public double getDistancia()
@@ -53,11 +49,6 @@ public class Atletismo extends Actividade
         return this.altitude;
     }
 
-    public String getTipo()
-    {
-        return this.tipo;
-    }
-
     public void setDistancia(double d)
     {
         this.distancia = d;
@@ -68,11 +59,17 @@ public class Atletismo extends Actividade
         this.altitude = a;
     }
 
-    public void setTipo(String t){
-        this.tipo = t;
+    /**
+     * Função para calcular a velocidade media
+     */
+
+    public double velMedia()
+    {
+        return ((this.distancia)/this.getDuracao());
     }
+
     //ToString, Equals e Clone
-     public String toString()
+    public String toString()
     {
         StringBuilder s = new StringBuilder("....."); 
         s.append(super.toString());
@@ -85,11 +82,12 @@ public class Atletismo extends Actividade
         if((o==null || o.getClass()!=this.getClass()))
             return false;
         Atletismo c = (Atletismo) o;
-        return(super.equals(o) && (c.getDistancia() == this.distancia) && (c.getTipo() == this.tipo) && (c.getAltitude() == this.altitude));
+        return(super.equals(o) && (c.getDistancia() == this.distancia) && (c.getAltitude() == this.altitude));
 
     }
+
     public Atletismo clone()
     {
-        return new Atletismo(super.clone(), this.distancia, this.altitude, this.tipo);
+        return new Atletismo(super.clone(), this.distancia, this.altitude);
     }
 }
