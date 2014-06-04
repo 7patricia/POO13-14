@@ -10,6 +10,11 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Collection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.DateFormat;
+import java.util.Calendar;
 public class Utilizador
 {
     //Variáveis de Instância
@@ -24,8 +29,9 @@ public class Utilizador
     private List<Utilizador> amigos;
     private TreeMap<String,Actividade> actividades;
     private ArrayList<ArrayList<Actividade>> records;
-    private ArrayList<Evento> eventosInscrito;
-    private ArrayList<Evento> eventosPendentes;
+    private TreeMap<String,Evento> eventosInscrito;
+    private TreeMap<String,Evento> eventosPendentes;
+    private ArrayList<Utilizador> pedidosAmizade;
     //Construtores
     public Utilizador()
     {
@@ -38,11 +44,13 @@ public class Utilizador
         this.dataNascimento = "";
         this.desportoFavorito = "";
         this.amigos = new ArrayList<Utilizador>();
-        this.actividades = new TreeMap<String,Actividade>();
+        this.actividades = new TreeMap<String,Actividade>(new ComparatorData());
         this.records = new ArrayList<ArrayList<Actividade>>();
+        this.eventosInscrito = new TreeMap<String,Evento>(new ComparatorData());
+        this.eventosPendentes = new TreeMap<String,Evento>(new ComparatorData());
     }
 
-    public Utilizador(String n, String e, String pss, String g, double a, double p, String d, String f, List<Utilizador> am, TreeMap<String,Actividade> ac, ArrayList<ArrayList<Actividade>> rec)
+    public Utilizador(String n, String e, String pss, String g, double a, double p, String d, String f, List<Utilizador> am, TreeMap<String,Actividade> ac, ArrayList<ArrayList<Actividade>> rec, TreeMap<String,Evento> ei, TreeMap<String,Evento> ep)
     {
         this.nome = n;
         this.email = e;
@@ -55,6 +63,8 @@ public class Utilizador
         this.amigos = new ArrayList<Utilizador>(am);
         this.actividades = new TreeMap<String,Actividade>(ac);
         this.records = new ArrayList<ArrayList<Actividade>>(rec);
+        this.eventosInscrito = new TreeMap<String,Evento>(ei);
+        this.eventosPendentes = new TreeMap<String,Evento>(ep);
     }
 
     //Métodos de Instância
@@ -107,6 +117,15 @@ public class Utilizador
         return res;
     }
 
+    public ArrayList<Utilizador> getPedidosAmizade()
+    {
+        ArrayList<Utilizador> res = new ArrayList<Utilizador>();
+        for(Utilizador u : this.pedidosAmizade)
+            for(int i =0;i<pedidosAmizade.size()-1;i++)
+                res.add(i,u.clone());
+        return res;
+    }
+
     public ArrayList getActividades()
     {
         ArrayList<Actividade> lista = new ArrayList<Actividade>();
@@ -117,21 +136,19 @@ public class Utilizador
         return lista;
     }
 
-    public ArrayList getEventosInscrito()
+    public TreeMap getEventosInscrito()
     {
-        ArrayList<Evento> res = new ArrayList<Evento>();
-        for(Evento e : this.eventosInscrito)
-            for(int i =0;i<eventosInscrito.size()-1;i++)
-                res.add(i,e.clone());
+        TreeMap<String,Evento> res = new TreeMap<String,Evento>(new ComparatorData());
+        for(Evento e : this.eventosInscrito.values())
+            res.put(e.getData(),e.clone());
         return res;
     }
 
-    public ArrayList getEventosPendentes()
+    public TreeMap getEventosPendentes()
     {
-        ArrayList<Evento> res = new ArrayList<Evento>();
-        for(Evento e : this.eventosPendentes)
-            for(int i =0;i<eventosPendentes.size()-1;i++)
-                res.add(i,e.clone());
+        TreeMap<String,Evento> res = new TreeMap<String,Evento>();
+        for(Evento e : this.eventosPendentes.values())
+            res.put(e.getData(),e.clone());
         return res;
     }
 
@@ -182,23 +199,30 @@ public class Utilizador
             this.amigos.add(a.get(i).clone());
     }
 
+    public void setPedidosAmizade(ArrayList<Utilizador> a)
+    {
+        int i;
+        for(i=0;i<a.size()-1;i++)
+            this.pedidosAmizade.add(a.get(i).clone());
+    }
+
     public void setActividade(Actividade a)
     {
-        this.actividades.put(a.getData(),a.clone());
+        for(int i=0;i<10;i++){
+            this.actividades.put(a.getData(),a.clone());
+        }
     }
 
-    public void setEventosInscrito(ArrayList<Evento> e)
+    public void setEventosInscrito(TreeMap<String,Evento> e)
     {
-        int i;
-        for(i=0;i<e.size()-1;i++)
-            this.eventosInscrito.add(e.get(i).clone());
+        for(Evento even : e.values())
+            this.eventosInscrito.put(even.getData(),even.clone());
     }
 
-    public void setEventosPendentes(ArrayList<Evento> e)
+    public void setEventosPendentes(TreeMap<String,Evento> e)
     {
-        int i;
-        for(i=0;i<e.size()-1;i++)
-            this.eventosPendentes.add(e.get(i).clone());
+        for(Evento even : e.values())
+            this.eventosPendentes.put(even.getData(),even.clone());
     }
 
     //Métodos
@@ -241,46 +265,56 @@ public class Utilizador
      * Função que devolve a lista de actividades de um utilizador num
      * determinado mês
      */
-    /** public TreeMap<String,Actividade> actividadesMes(String mes)
+    public TreeMap<String,Actividade> actividadesMes(String mes)
     {
-    TreeMap<String,Actividade> res = new TreeMap<String,Actividade>();
-    if(mes == MES)
-    res.put(mes,qqr coisa);
-    return res;
+        TreeMap<String,Actividade> res = new TreeMap<String,Actividade>();
+        for(String key : actividades.keySet())
+            {
+                if(String.valueOf(parseData(key).get(Calendar.MONTH)) == mes)
+                res.put(key,actividades.get(key).clone());
+            }
+        return res;
     }
-     */
-    
-     /**
+
+    /**
      * Função que devolve a lista de actividades de um utilizador num
      * determinado ano
      */
-    /** public TreeMap<String,Actividade> actividadesAno(String ano)
+    public TreeMap<String,Actividade> actividadesAno(String ano)
     {
-    TreeMap<String,Actividade> res = new TreeMap<String,Actividade>();
-    if(ano == ANO)
-    res.put(ano,qqr coisa);
-    return res;
+        TreeMap<String,Actividade> res = new TreeMap<String,Actividade>();
+        for(String key : actividades.keySet())
+            {
+                if(String.valueOf(parseData(key).get(Calendar.YEAR)) == ano)
+                res.put(key,actividades.get(key).clone());
+            }
+        return res;
     }
-     */
 
     /**
      * Função que remove um Evento da lista de eventos pendentes
      */
-    public void removePendente(Evento e)
+    public boolean removePendente(Evento e)
     {
-        for(int i=0; i<eventosPendentes.size()-1;i++)
-            if(e == this.eventosPendentes.get(i))
-                eventosPendentes.remove(i);
+        if(this.eventosPendentes.get(e)!=null)
+        {
+            eventosPendentes.remove(e);
+            return true;
+        }
+        return false;
     }
 
     /**
      * Função que remove um Evento da lista de eventos em que está inscrito
      */
-    public void removeInscrito(Evento e)
+    public boolean removeInscrito(Evento e)
     {
-        for(int i=0; i<eventosInscrito.size()-1;i++)
-            if(e == this.eventosInscrito.get(i))
-                eventosInscrito.remove(i);
+        if(this.eventosInscrito.get(e)!=null)
+        {
+            eventosInscrito.remove(e);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -288,9 +322,7 @@ public class Utilizador
      */
     public void adicionaPendente(Evento e)
     {
-        for(int i=0; i<eventosPendentes.size()-1;i++)
-            if(e == this.eventosPendentes.get(i))
-                this.eventosPendentes.add(e.clone());
+        this.eventosPendentes.put(e.getData(),e.clone());
     }
 
     /**
@@ -298,9 +330,7 @@ public class Utilizador
      */
     public void adicionaInscrito(Evento e)
     {
-        for(int i=0; i<eventosInscrito.size()-1;i++)
-            if(e == this.eventosInscrito.get(i))
-                this.eventosInscrito.add(e.clone());
+        this.eventosInscrito.put(e.getData(),e.clone());
     }
 
     /**
@@ -311,17 +341,82 @@ public class Utilizador
     {
         this.actividades.remove(a);
     }
-    
+
     /**
      * Função que adiciona um record à lista
      */
-    
-    
+
     /**
      * Função que remove um record da lista
      */
-    
 
+    /**
+     * Função que remove um pedido de amizade da lista de pedidos
+     */
+
+    public boolean removePedido(Utilizador pedinte)
+    {
+        for(int i=0; i<this.pedidosAmizade.size()-1;i++)
+            if(this.pedidosAmizade.get(i) == pedinte)
+            {
+                this.pedidosAmizade.remove(pedinte);
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Função que adiciona um pedido de amizade da lista de pedidos
+     */
+    public boolean adicionaPedido(Utilizador pedinte){
+        for(int i=0; i<this.pedidosAmizade.size()-1;i++)
+            if(this.pedidosAmizade.get(i) == pedinte)
+            {
+                this.pedidosAmizade.add(pedinte);
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Função que adiciona um utilizador à lista de amigos
+     */
+    public void adicionaAmigo(Utilizador pedinte){
+        this.amigos.add(pedinte);
+    }
+
+    /**
+     * Função que verifica se um utilizador já praticou um certo tipo
+     * de actividade
+     */
+
+    public boolean praticouActividade(String tipo)
+    {
+        for(Actividade a: this.actividades.values())
+        {
+            if(a.getTipo()==tipo)
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Função para fazer parse de uma data
+     */
+
+    public Calendar parseData(String d)
+    {
+        DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(formato.parse(d));
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+        return c;
+    }
 
     //ToString, Equals e Clone
     public String toString()
@@ -344,6 +439,6 @@ public class Utilizador
     public Utilizador clone()
 
     {
-        return new Utilizador(this.nome, this.email, this.password, this.genero, this.altura, this.peso, this.dataNascimento, this.desportoFavorito, this.amigos, this.actividades, this.records);
+        return new Utilizador(this.nome, this.email, this.password, this.genero, this.altura, this.peso, this.dataNascimento, this.desportoFavorito, this.amigos, this.actividades, this.records, this.eventosInscrito, this.eventosPendentes);
     }
 }

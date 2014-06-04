@@ -27,7 +27,7 @@ public class Basquetebol extends Actividade
 
     public Basquetebol(String cm, double c, double rc, String l, long dur, String data, double d, int x)
     {
-        super(cm,c,rc,l,dur,data);
+        super(cm,c,rc,l,dur,data,"Basquetebol");
         this.distancia = d;
         this.cestos = x;
     }

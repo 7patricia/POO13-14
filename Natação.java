@@ -27,7 +27,7 @@ public class Natação extends Actividade implements ActVelocidade
 
     public Natação(String cm, double c, double rc, String l, long dur, String data, String t, double d)
     {
-        super(cm,c,rc,l,dur,data);
+        super(cm,c,rc,l,dur,data,"Natação");
         this.tipo = t;
         this.distancia = d;
     }

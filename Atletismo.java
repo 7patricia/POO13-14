@@ -27,7 +27,7 @@ public class Atletismo extends Actividade implements ActVelocidade
 
     public Atletismo(String cm, double c, double rc, String l, long dur, String data, double d, double a)
     {
-        super(cm,c,rc,l,dur,data);
+        super(cm,c,rc,l,dur,data,"Atletismo");
         this.distancia = d;
         this.altitude = a;
     }

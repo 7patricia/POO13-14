@@ -6,6 +6,7 @@
  * @version (a version number or a date)
  */
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class FitnessUM
 {
@@ -137,21 +138,44 @@ public class FitnessUM
     }
 
     /**
+     * Função que permite ao utilizador ligado aceitar um pedido de amizade
+     */
+    public void aceitarPedido(Utilizador pedinte)
+    {
+        this.utilizadorLigado.removePedido(pedinte);
+        this.utilizadorLigado.adicionaAmigo(pedinte);
+    }
+
+    /**
+     * Função que permite ao utilizador ligado rejeitar um pedido de amizade
+     */
+    public void rejeitarPedido(Utilizador pedinte)
+    {
+        this.utilizadorLigado.removePedido(pedinte);
+    }
+
+    /**
+     * Função que permite ao utilizador ligado fazer um pedido de amizade
+     */
+    public void efectuarPedido(Utilizador futuroAmigo)
+    {
+        futuroAmigo.adicionaPedido(this.utilizadorLigado);
+    }
+
+    /**
      * Função que retorna as actividades do utilizador ligado num determinado mês
      */
-    /**public Tree
-     * Map<String,Actividade>(String mes)
+    public TreeMap<String,Actividade> mes (String mes)
     {
-    return utilizadorLigado.actividadeMes(mes);
-    }*/
-    
+        return utilizadorLigado.actividadesMes(mes);
+    }
+
     /**
      * Função que retorna as actividades do utilizador ligado num determinado ano
      */
-    /**public Tree
-     * Map<String,Actividade>(String ano)
+    public TreeMap<String,Actividade> ano (String ano)
     {
-    return utilizadorLigado.actividadeAno(ano);
-    }*/
+        return utilizadorLigado.actividadesAno(ano);
+    }
 }
 

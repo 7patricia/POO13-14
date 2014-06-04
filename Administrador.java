@@ -83,7 +83,7 @@ public class Administrador
      */
     public void aceitaEvento(Evento e, Utilizador u)
     {
-        if(e.getNumLimite()<= e.getInscritos().size())
+        if(e.getNumLimite()<= e.getInscritos().size() && u.praticouActividade(e.getTipo()))
         {
             u.removeInscrito(e);
         }

@@ -11,21 +11,25 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.DateFormat;
+import java.util.Calendar;
 
 public class ComparatorData implements Comparator<String>, Serializable
 {
     public int compare(String d1, String d2) 
     {
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MMM-yyyy");
+    DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar data1 = Calendar.getInstance();
+        Calendar data2 = Calendar.getInstance();
+        
         try {
- 
-		Date date1 = formato.parse(d1);
-		Date date2 = formato.parse(d2);
- 
-	} catch (ParseException e) {
-		e.printStackTrace();
-	}
-	
-	return d1.compareTo(d2);
+            data1.setTime(formato.parse(d1));
+            data2.setTime(formato.parse(d2));
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+        return data1.compareTo(data2);
     }
 }

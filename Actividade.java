@@ -15,6 +15,7 @@ public class Actividade
     protected String local;
     protected long duracao;
     protected String data;
+    private String tipo;
 
     //Construtores
     public Actividade()
@@ -25,9 +26,10 @@ public class Actividade
         this.local = "";
         this.duracao = 0;
         this.data="";
+        this.tipo = "";
     }
 
-    public Actividade(String cm, double c, double rc, String l, long dur, String data)
+    public Actividade(String cm, double c, double rc, String l, long dur, String data, String tipo)
     {
         this.condMeteo = cm;
         this.calorias = c;
@@ -35,11 +37,12 @@ public class Actividade
         this.local = l;
         this.duracao = dur;
         this.data =data;
+        this.tipo = tipo;
     }
 
     public Actividade(Actividade a)
     {
-        this(a.condMeteo, a.calorias, a.ritmoCardio, a.local, a.duracao, a.data);
+        this(a.condMeteo, a.calorias, a.ritmoCardio, a.local, a.duracao, a.data, a.tipo);
     }
 
     //Métodos de Instância
@@ -73,6 +76,12 @@ public class Actividade
     {
         return this.data;
     }
+    
+    public String getTipo()
+
+    {
+        return this.tipo;
+    }
 
     public void setCondMeteo(String cm)
     {
@@ -103,6 +112,11 @@ public class Actividade
     {
         this.data = d;
     }
+    
+    public void setTipo( String t)
+    {
+        this.tipo = t;
+    }
 
     //getClass, ToString, Equals e Clone
     public String toString()
@@ -123,6 +137,6 @@ public class Actividade
 
     public Actividade clone()
     {
-        return new Actividade(this.condMeteo, this.calorias, this.ritmoCardio, this.local, this.duracao, this.data);
+        return new Actividade(this.condMeteo, this.calorias, this.ritmoCardio, this.local, this.duracao, this.data, this.tipo);
     }
 }

@@ -24,7 +24,7 @@ public class Voleibol extends Actividade
 
     public Voleibol(String cm, double c, double rc, String l, long dur,String data, int p)
     {
-        super(cm,c,rc,l,dur,data);
+        super(cm,c,rc,l,dur,data,"Voleibol");
         this.pontos = p;
     }
 

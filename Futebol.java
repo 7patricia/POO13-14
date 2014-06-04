@@ -26,7 +26,7 @@ public class Futebol extends Actividade
 
     public Futebol(String cm, double c, double rc, String l, long dur, String data, double d, int x)
     {
-        super(cm,c,rc,l,dur,data);
+        super(cm,c,rc,l,dur,data,"Futebol");
         this.distancia = d;
         this.golos = x;
     }

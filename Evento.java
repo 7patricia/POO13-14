@@ -10,11 +10,11 @@ public class Evento
 {
     // Variáveis de Instância
     private String nome;
-    
     private String data;
     private ArrayList<Utilizador> inscritos;
     private int numLimite;
     private String dataLim;
+    private String tipo;
     //Construtores
     public Evento()
     {
@@ -23,20 +23,22 @@ public class Evento
         this.inscritos = new ArrayList<Utilizador>();
         this.numLimite = 0;
         this.dataLim = "";
+        this.tipo="";
     }
 
-    public Evento(String n, String d, ArrayList<Utilizador> i, int x, String dl)
+    public Evento(String n, String d, ArrayList<Utilizador> i, int x, String dl,String tipo)
     {
         this.nome = n;
         this.data = d;
         this.inscritos = new ArrayList<Utilizador>(i);
         this.numLimite = x;
         this.dataLim = dl;
+        this.tipo = tipo;
     }
 
     public Evento(Evento e)
     {
-        this(e.getNome(), e.getData(), e.getInscritos(), e.getNumLimite(), e.getDataLim());
+        this(e.getNome(), e.getData(), e.getInscritos(), e.getNumLimite(), e.getDataLim(), e.getTipo());
     }
     //Métodos de Instância
     public String getNome()
@@ -47,6 +49,11 @@ public class Evento
     public String getData()
     {
         return this.data; 
+    }
+    
+    public String getTipo()
+    {
+        return this.tipo; 
     }
 
     public ArrayList<Utilizador> getInscritos()
@@ -70,6 +77,11 @@ public class Evento
     public void setNome(String n)
     {
         this.nome = n;
+    }
+    
+    public void setTipo(String t)
+    {
+        this.tipo = t;
     }
 
     public void setData(String d)
@@ -123,6 +135,6 @@ public class Evento
 
     public Evento clone() 
     {
-        return new Evento(this.nome, this.data, this.inscritos, this.numLimite, this.dataLim);
+        return new Evento(this.nome, this.data, this.inscritos, this.numLimite, this.dataLim, this.tipo);
     }
 }

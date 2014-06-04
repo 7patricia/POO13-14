@@ -29,7 +29,7 @@ public class Ciclismo extends Actividade implements ActVelocidade
 
     public Ciclismo(String cm, double c, double rc, String l, long dur, String data, double d, double a, String t)
     {
-        super(cm,c,rc,l,dur,data);
+        super(cm,c,rc,l,dur,data,"Ciclismo");
         this.distancia = d;
         this.altitude = a;
         this.tipo = t;
