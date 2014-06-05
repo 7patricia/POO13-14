@@ -257,11 +257,13 @@ public class Utilizador
     /**
      * Função que verifica se as credenciais passadas como argumento
      * pertencem a este utilizador
+     * @param mail
+     * @param pass
+     * @return 
      */
     public boolean verificaDados(String mail, String pass)
     {
-        if (this.email == mail && this.password == pass) return true;
-        else return false;
+        return (this.email.equals(mail) && this.password.equals(pass));
     }
 
     /**

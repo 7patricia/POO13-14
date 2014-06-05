@@ -19,8 +19,8 @@ public class MainMenu extends javax.swing.JFrame {
      */
     FitnessUM fitnessUM;
     
-    public MainMenu() {
-        fitnessUM = new FitnessUM();
+    public MainMenu(FitnessUM fitnessUM) {
+        this.fitnessUM = fitnessUM;
         initComponents();
         jPasswordField1.setText("");
     }
@@ -161,6 +161,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         new Registar(this.fitnessUM).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -194,7 +195,7 @@ public class MainMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainMenu().setVisible(true);
+                new MainMenu(new FitnessUM()).setVisible(true);
             }
         });
     }

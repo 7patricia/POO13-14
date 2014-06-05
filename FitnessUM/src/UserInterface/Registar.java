@@ -6,6 +6,7 @@
 
 package UserInterface;
 
+import javax.swing.JOptionPane;
 import org.FitnessUM;
 
 /**
@@ -90,6 +91,8 @@ public class Registar extends javax.swing.JFrame {
         jLabel9.setText("Desporto Favorito");
 
         jScrollPane1.setName("txt_mail"); // NOI18N
+
+        jTextPane1.setName("txt_mail"); // NOI18N
         jScrollPane1.setViewportView(jTextPane1);
 
         jTextPane2.setName("txt_nome"); // NOI18N
@@ -111,6 +114,11 @@ public class Registar extends javax.swing.JFrame {
         jPasswordField1.setName("txt_password"); // NOI18N
 
         jButton1.setText("Registar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,6 +211,27 @@ public class Registar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String mail = jTextPane1.getText();
+        String nome = jTextPane2.getText();
+        String dataNascimento = jTextPane3.getText();
+        String altura = jTextPane4.getText();
+        String peso = jTextPane5.getText();
+        String password = jPasswordField1.getText();
+        String sexo = jComboBox1.getSelectedItem().toString();
+        String desporto = jComboBox2.getSelectedItem().toString();
+        boolean aux = this.fitnessUM.registar(mail, password, nome, sexo, dataNascimento, desporto, altura, peso);
+        if( aux == false){
+          JOptionPane.showMessageDialog(null, "Dados incorrectos");
+        }
+        else{
+          JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
+          new MainMenu(this.fitnessUM).setVisible(true);
+          this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -75,22 +75,19 @@ public class FitnessUM
     /**
      * Função que verifica se um dado e-mail e password correspondem a um utilizador 
      * registado e se sim faz o login
+     * @param mail
+     * @param pass
+     * @return 
      **/
     public boolean checkUser (String mail, String pass)
     {
         int i;  
         int flag = 0;
-        for(i=0; i<registos.size()-1 && flag == 0;i++)
+        for(Utilizador u : registos)
         {
-            if(registos.get(i).verificaDados(mail,pass) == true) flag = 1;
+            if(u.verificaDados(mail,pass) == true) utilizadorLigado = u;
         }
-
-        if (flag == 1) 
-        {
-            utilizadorLigado = registos.get(i);
-            return true;
-        }
-        else return false;
+        return utilizadorLigado != null;
     }
 
     /**
@@ -109,6 +106,7 @@ public class FitnessUM
             novo.setDataNascimento(dataNascimento);
             novo.setDesportoFavorito(desporto);
             novo.setNome(nome);
+            System.out.println(altura);
             novo.setAltura((double)(Integer.parseInt(altura)));
             novo.setPeso((double)(Integer.parseInt(peso)));
             
