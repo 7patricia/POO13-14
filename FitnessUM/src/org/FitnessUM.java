@@ -97,7 +97,7 @@ public class FitnessUM
      * Função que verifica se um utilizador já está registado e se não estiver 
      * adiciona-o à lista de registos
      */
-    public boolean registar(String mail, String pass)
+    public boolean registar(String mail, String pass, String nome, String sexo, String dataNascimento, String desporto, String altura, String peso)
     {
         if(checkUser(mail,pass) == true) return false;
         else 
@@ -105,6 +105,13 @@ public class FitnessUM
             Utilizador novo = new Utilizador();
             novo.setEmail(mail);
             novo.setPassword(pass);
+            novo.setGenero(sexo);
+            novo.setDataNascimento(dataNascimento);
+            novo.setDesportoFavorito(desporto);
+            novo.setNome(nome);
+            novo.setAltura(Integer.parseInt(altura));
+            novo.setPeso(Integer.parseInt(peso));
+            
             registos.add(novo);
             return true;
         }
