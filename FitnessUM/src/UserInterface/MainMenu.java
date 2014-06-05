@@ -144,6 +144,8 @@ public class MainMenu extends javax.swing.JFrame {
         boolean aux = fitnessUM.checkUser(mail,password);
         if(aux == true){
             JOptionPane.showMessageDialog(null, "Logado com sucesso");
+            this.setVisible(false);
+            new MenuUtilizador(this.fitnessUM).setVisible(true);
         }
         else{
             JOptionPane.showMessageDialog(null, "Dados incorrectos");
@@ -210,4 +212,8 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void setvisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
