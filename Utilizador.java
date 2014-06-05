@@ -15,6 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Collections;
+
+
+
 public class Utilizador
 {
     //Variáveis de Instância
@@ -28,7 +33,7 @@ public class Utilizador
     private String desportoFavorito;
     private List<Utilizador> amigos;
     private TreeMap<String,Actividade> actividades;
-    private ArrayList<ArrayList<Actividade>> records;
+    private HashMap<String,ArrayList<Actividade>> records;
     private TreeMap<String,Evento> eventosInscrito;
     private TreeMap<String,Evento> eventosPendentes;
     private ArrayList<Utilizador> pedidosAmizade;
@@ -45,12 +50,12 @@ public class Utilizador
         this.desportoFavorito = "";
         this.amigos = new ArrayList<Utilizador>();
         this.actividades = new TreeMap<String,Actividade>(new ComparatorData());
-        this.records = new ArrayList<ArrayList<Actividade>>();
+        this.records = new HashMap<String,ArrayList<Actividade>>();
         this.eventosInscrito = new TreeMap<String,Evento>(new ComparatorData());
         this.eventosPendentes = new TreeMap<String,Evento>(new ComparatorData());
     }
 
-    public Utilizador(String n, String e, String pss, String g, double a, double p, String d, String f, List<Utilizador> am, TreeMap<String,Actividade> ac, ArrayList<ArrayList<Actividade>> rec, TreeMap<String,Evento> ei, TreeMap<String,Evento> ep)
+    public Utilizador(String n, String e, String pss, String g, double a, double p, String d, String f, List<Utilizador> am, TreeMap<String,Actividade> ac, HashMap<String,ArrayList<Actividade>> rec, TreeMap<String,Evento> ei, TreeMap<String,Evento> ep)
     {
         this.nome = n;
         this.email = e;
@@ -62,7 +67,7 @@ public class Utilizador
         this.desportoFavorito = f;
         this.amigos = new ArrayList<Utilizador>(am);
         this.actividades = new TreeMap<String,Actividade>(ac);
-        this.records = new ArrayList<ArrayList<Actividade>>(rec);
+        this.records = new HashMap<String,ArrayList<Actividade>>(rec);
         this.eventosInscrito = new TreeMap<String,Evento>(ei);
         this.eventosPendentes = new TreeMap<String,Evento>(ep);
     }
@@ -269,10 +274,10 @@ public class Utilizador
     {
         TreeMap<String,Actividade> res = new TreeMap<String,Actividade>();
         for(String key : actividades.keySet())
-            {
-                if(String.valueOf(parseData(key).get(Calendar.MONTH)) == mes)
+        {
+            if(String.valueOf(parseData(key).get(Calendar.MONTH)) == mes)
                 res.put(key,actividades.get(key).clone());
-            }
+        }
         return res;
     }
 
@@ -284,10 +289,10 @@ public class Utilizador
     {
         TreeMap<String,Actividade> res = new TreeMap<String,Actividade>();
         for(String key : actividades.keySet())
-            {
-                if(String.valueOf(parseData(key).get(Calendar.YEAR)) == ano)
+        {
+            if(String.valueOf(parseData(key).get(Calendar.YEAR)) == ano)
                 res.put(key,actividades.get(key).clone());
-            }
+        }
         return res;
     }
 
@@ -340,6 +345,67 @@ public class Utilizador
     public void remAct(Actividade a)
     {
         this.actividades.remove(a);
+    }
+
+    /**
+     * Função que adiciona uma actividade
+     */
+    public void addActividade(Actividade a)
+    {
+        this.actividades.put(a.getData(),a.clone());
+        if(this.records.containsKey(a.getTipo())){
+           ArrayList<Actividade> auxList = records.get(a.getTipo());
+           switch(a.getTipo()){
+                  case "Natação":
+                    auxList.add(a);
+                    Collections.sort(auxList,new ComparatorNatacao());
+                    if(auxList.size() >10){
+                         auxList.remove(auxList.get(auxList.size()-1));
+                    }
+                   case "Basquetebol":
+                    auxList.add(a);
+                    Collections.sort(auxList,new ComparatorBasquetebol());
+                    if(auxList.size() >10){
+                         auxList.remove(auxList.get(auxList.size()-1));
+                   }
+                   case "Caminhada":
+                    auxList.add(a);
+                    Collections.sort(auxList,new ComparatorCaminhada());
+                    if(auxList.size() >10){
+                         auxList.remove(auxList.get(auxList.size()-1));
+                   }
+                   case "Futebol":
+                    auxList.add(a);
+                    Collections.sort(auxList,new ComparatorFutebol());
+                    if(auxList.size() >10){
+                         auxList.remove(auxList.get(auxList.size()-1));
+                   }
+                   case "Voleibol":
+                     auxList.add(a);
+                     Collections.sort(auxList,new ComparatorVoleibol());
+                     if(auxList.size() >10){
+                         auxList.remove(auxList.get(auxList.size()-1));
+                    }
+                    case "Ciclismo":
+                     auxList.add(a);
+                     Collections.sort(auxList,new ComparatorCiclismo());
+                     if(auxList.size() >10){
+                         auxList.remove(auxList.get(auxList.size()-1));
+                    }
+                    case "Atletismo":
+                     auxList.add(a);
+                     Collections.sort(auxList,new ComparatorAtletismo());
+                     if(auxList.size() >10){
+                         auxList.remove(auxList.get(auxList.size()-1));
+                    }
+            records.put(a.getTipo(),auxList);
+            }
+        }
+        else{
+               ArrayList<Actividade> auxList = new ArrayList<Actividade>();
+               auxList.add(a);
+               records.put(a.getTipo(),auxList);
+            }
     }
 
     /**

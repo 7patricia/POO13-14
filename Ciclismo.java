@@ -5,7 +5,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ciclismo extends Actividade implements ActVelocidade
+public class Ciclismo extends Actividade
 {
     //Variáveis de Instância
     private double distancia;
@@ -72,14 +72,6 @@ public class Ciclismo extends Actividade implements ActVelocidade
         this.tipo = t;
     }
     
-    /**
-     * Função para calcular a velocidade media
-     */
-    
-    public double velMedia()
-    {
-        return ((this.distancia)/this.getDuracao());
-    }
     //ToString, Equals e Clone
     public String toString()
     {

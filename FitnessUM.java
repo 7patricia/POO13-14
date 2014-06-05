@@ -12,12 +12,67 @@ public class FitnessUM
 {
     // instance variables - replace the example below with your own
     protected ArrayList<Utilizador> registos;
-    protected ArrayList<Evento> eventos;
+    protected TreeMap<String,Evento> eventos;
     protected Utilizador utilizadorLigado;
+
+    public FitnessUM()
+    {
+        this.registos = new ArrayList<Utilizador>();
+        this.eventos = new TreeMap<String,Evento>(new ComparatorData());
+        this.utilizadorLigado = null;
+
+    }
+
+    public FitnessUM(ArrayList<Utilizador> r, TreeMap<String,Evento> e, Utilizador u)
+    {
+        this.registos = new ArrayList<Utilizador>(r);
+        this.eventos = new TreeMap<String,Evento>(e);
+        this.utilizadorLigado = u;
+
+    }
+
+    public void setUtilizadorLigado(Utilizador u)
+    {
+        this.utilizadorLigado = u.clone(); 
+    }
+
+    public void setEventos(TreeMap<String,Evento> e)
+    {
+        for(Evento even : e.values())
+            this.eventos.put(even.getData(),even.clone());
+    }
+
+    public void setRegistos(ArrayList<Utilizador> r)
+    {
+        for(int i=0;i<r.size()-1;i++)
+            this.registos.add(r.get(i).clone());
+    }
+
+    public Utilizador getUtilizadorLigado()
+    {
+        return this.utilizadorLigado;
+    }
+
+    public ArrayList<Utilizador> getRegistos()
+    {
+        ArrayList<Utilizador> res = new ArrayList<Utilizador>();
+        for(Utilizador u : this.registos)
+            for(int i =0;i<registos.size()-1;i++)
+                res.add(i,u.clone());
+        return res;
+    }
+
+    public TreeMap<String,Evento> getEventos()
+    {
+        TreeMap<String,Evento> res = new TreeMap<String,Evento>(new ComparatorData());
+        for(Evento e : this.eventos.values())
+            res.put(e.getData(),e.clone());
+        return res;  
+    }
 
     /**
      * Função que verifica se um dado e-mail e password correspondem a um utilizador 
-     * registado
+     * registado e se sim faz o login
      **/
     public boolean checkUser (String mail, String pass)
     {
@@ -52,20 +107,7 @@ public class FitnessUM
             return true;
         }
     }
-
-    /**
-     * Função que retorna a posição de um utilizador no ArrayList de registos
-     * (se ele tiver registado, se não retorna menos um)
-     */
-    public int userIndice (String mail, String pass)
-    {
-        for(int i=0; i<registos.size()-1;i++)
-        {
-            if(registos.get(i).verificaDados(mail,pass) == true) return i;
-        }
-        return -1;
-    }
-
+    
     /**
      * Função que verifica se um utilizador está registado e se sim remove-o da lista
      * de registos
@@ -81,11 +123,38 @@ public class FitnessUM
     }
 
     /**
+     * Função que retorna a posição de um utilizador no ArrayList de registos
+     * (se ele tiver registado, se não retorna menos um)
+     */
+    public int userIndice (String mail, String pass)
+    {
+        for(int i=0; i<registos.size()-1;i++)
+        {
+            if(registos.get(i).verificaDados(mail,pass) == true) return i;
+        }
+        return -1;
+    }
+
+    /**
      * Função que adiciona uma actividade à lista de atividades do utilizador ligado
      */
-    public void addActividade(Actividade a)
+    public void adicionaActividade(Actividade a)
     {
-        utilizadorLigado.setActividade(a);
+        utilizadorLigado.addActividade(a);
+    }
+
+    /**
+     * Função que remove uma actividade da lista de actividades do utilizador ligado
+     */
+    public boolean removeActividade(Actividade a)
+    {
+        if(this.utilizadorLigado.getActividades().contains(a))
+        {
+            this.utilizadorLigado.remAct(a);
+            return true;
+        }
+        else
+            return false;
     }
 
     /**
@@ -121,20 +190,6 @@ public class FitnessUM
             return amigo.toString();
         else
             return "";
-    }
-
-    /**
-     * Função que remove uma actividade da lista de actividades do utilizador ligado
-     */
-    public boolean removeActividade(Actividade a)
-    {
-        if(this.utilizadorLigado.getActividades().contains(a))
-        {
-            this.utilizadorLigado.remAct(a);
-            return true;
-        }
-        else
-            return false;
     }
 
     /**
@@ -176,6 +231,24 @@ public class FitnessUM
     public TreeMap<String,Actividade> ano (String ano)
     {
         return utilizadorLigado.actividadesAno(ano);
+    }
+
+    //Equals e clone
+
+    public boolean equals(Object o)
+    {
+        if(this == o)
+            return true;
+        if((o==null || o.getClass()!=this.getClass()))
+            return false;
+        FitnessUM u = (FitnessUM) o;
+        return((u.getUtilizadorLigado() == this.utilizadorLigado) && (u.getEventos() == this.eventos) && (u.getRegistos() == this.registos));
+    }
+
+    public FitnessUM clone()
+
+    {
+        return new FitnessUM(this.registos, this.eventos, this.utilizadorLigado);
     }
 }
 

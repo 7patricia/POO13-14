@@ -8,11 +8,10 @@
 
 import java.util.Comparator;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.text.DateFormat;
 import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 public class ComparatorData implements Comparator<String>, Serializable
 {
