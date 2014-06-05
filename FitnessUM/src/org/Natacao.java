@@ -10,34 +10,29 @@ package org;
 public class Natacao extends Actividade
 {
     //Variáveis de Instância
-    private String tipo;
     private double distancia;
 
     //Construtores
     public Natacao()
     {
         super();
-        this.tipo = "";
         this.distancia = 0.0;
     }
 
-    public Natacao(String t, double d)
+    public Natacao(double d)
     {
-        this.tipo = t;
         this.distancia = d;
     }
 
-    public Natacao(String cm, double c, double rc, String l, long dur, String data, String t, double d)
+    public Natacao(String cm, double c, double rc, String l, long dur, String data, double d)
     {
         super(cm,c,rc,l,dur,data,"Natação");
-        this.tipo = t;
         this.distancia = d;
     }
 
-    public Natacao(Actividade a,String t, double d)
+    public Natacao(Actividade a, double d)
     {
         super(a);
-        this.tipo = t;
         this.distancia = d;
     }
     //Métodos de Instância
@@ -46,21 +41,13 @@ public class Natacao extends Actividade
         return this.distancia;
     }
 
-    public String getTipo()
-    {
-        return this.tipo;
-    }
 
     public void setDistancia(double d)
     {
         this.distancia = d;
     }
 
-    public void setTipo(String t)
-    {
-        this.tipo = t;
-    }
-
+  
     //ToString, Equals e Clone
     public String toString()
     {
@@ -75,12 +62,12 @@ public class Natacao extends Actividade
         if((o==null || o.getClass()!=this.getClass()))
             return false;
         Natacao c = (Natacao) o;
-        return(super.equals(o) && (c.getDistancia() == this.distancia) && (c.getTipo() == this.tipo));
+        return(super.equals(o) && (c.getDistancia() == this.distancia));
 
     }
 
     public Natacao clone()
     {
-        return new Natacao(super.clone(), this.tipo, this.distancia);
+        return new Natacao(super.clone(),this.distancia);
     }
 }

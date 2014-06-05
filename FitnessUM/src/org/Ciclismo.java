@@ -12,37 +12,33 @@ public class Ciclismo extends Actividade
     //Variáveis de Instância
     private double distancia;
     private double altitude;
-    private String tipo;
     //Construtores
     public Ciclismo()
     {
         super();
         this.distancia = 0.0;
         this.altitude = 0.0;
-        this.tipo = "";
+
     }
 
-    public Ciclismo(double d, double a, String t)
+    public Ciclismo(double d, double a)
     {
         this.distancia = d;
         this.altitude = a;
-        this.tipo = t;
     }
 
-    public Ciclismo(String cm, double c, double rc, String l, long dur, String data, double d, double a, String t)
+    public Ciclismo(String cm, double c, double rc, String l, long dur, String data, double d, double a)
     {
         super(cm,c,rc,l,dur,data,"Ciclismo");
         this.distancia = d;
         this.altitude = a;
-        this.tipo = t;
     }
 
-    public Ciclismo(Actividade a,double d, double x, String t)
+    public Ciclismo(Actividade a,double d, double x)
     {
         super(a);
         this.distancia = d;
         this.altitude = x;
-        this.tipo = t;
     }
     //Métodos de Instância
     public double getDistancia()
@@ -55,10 +51,6 @@ public class Ciclismo extends Actividade
         return this.altitude;
     }
 
-    public String getTipo()
-    {
-        return this.tipo;
-    }
 
     public void setDistancia(double d)
     {
@@ -70,9 +62,6 @@ public class Ciclismo extends Actividade
         this.altitude = a;
     }
 
-    public void setTipo(String t){
-        this.tipo = t;
-    }
     
     //ToString, Equals e Clone
     public String toString()
@@ -88,12 +77,12 @@ public class Ciclismo extends Actividade
         if((o==null || o.getClass()!=this.getClass()))
             return false;
         Ciclismo c = (Ciclismo) o;
-        return(super.equals(o) && (c.getDistancia() == this.distancia) && (c.getTipo() == this.tipo) && (c.getAltitude() == this.altitude));
+        return(super.equals(o) && (c.getDistancia() == this.distancia)&& (c.getAltitude() == this.altitude));
 
     }
 
     public Ciclismo clone()
     {
-        return new Ciclismo(super.clone(), this.distancia, this.altitude, this.tipo);
+        return new Ciclismo(super.clone(), this.distancia, this.altitude);
     }
 }
