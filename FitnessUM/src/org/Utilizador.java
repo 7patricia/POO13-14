@@ -1,3 +1,5 @@
+package org;
+
 
 /**
  * Classe para guardar a informação pessoal dos utilizadores

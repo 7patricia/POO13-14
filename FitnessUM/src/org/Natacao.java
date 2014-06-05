@@ -1,42 +1,44 @@
+package org;
+
 
 /**
- * Write a description of class Corrida here.
+ * Write a description of class Natação here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Atletismo extends Actividade
+public class Natacao extends Actividade
 {
     //Variáveis de Instância
+    private String tipo;
     private double distancia;
-    private double altitude;
 
     //Construtores
-    public Atletismo()
+    public Natacao()
     {
         super();
+        this.tipo = "";
         this.distancia = 0.0;
-        this.altitude = 0.0;
     }
 
-    public Atletismo(double d, double a)
+    public Natacao(String t, double d)
     {
+        this.tipo = t;
         this.distancia = d;
-        this.altitude = a;
     }
 
-    public Atletismo(String cm, double c, double rc, String l, long dur, String data, double d, double a)
+    public Natacao(String cm, double c, double rc, String l, long dur, String data, String t, double d)
     {
-        super(cm,c,rc,l,dur,data,"Atletismo");
+        super(cm,c,rc,l,dur,data,"Natação");
+        this.tipo = t;
         this.distancia = d;
-        this.altitude = a;
     }
 
-    public Atletismo(Actividade a,double d, double x)
+    public Natacao(Actividade a,String t, double d)
     {
         super(a);
+        this.tipo = t;
         this.distancia = d;
-        this.altitude = x;
     }
     //Métodos de Instância
     public double getDistancia()
@@ -44,9 +46,9 @@ public class Atletismo extends Actividade
         return this.distancia;
     }
 
-    public double getAltitude()
+    public String getTipo()
     {
-        return this.altitude;
+        return this.tipo;
     }
 
     public void setDistancia(double d)
@@ -54,9 +56,9 @@ public class Atletismo extends Actividade
         this.distancia = d;
     }
 
-    public void setAltitude(double a)
+    public void setTipo(String t)
     {
-        this.altitude = a;
+        this.tipo = t;
     }
 
     //ToString, Equals e Clone
@@ -72,13 +74,13 @@ public class Atletismo extends Actividade
         if(this == o) return true;
         if((o==null || o.getClass()!=this.getClass()))
             return false;
-        Atletismo c = (Atletismo) o;
-        return(super.equals(o) && (c.getDistancia() == this.distancia) && (c.getAltitude() == this.altitude));
+        Natacao c = (Natacao) o;
+        return(super.equals(o) && (c.getDistancia() == this.distancia) && (c.getTipo() == this.tipo));
 
     }
 
-    public Atletismo clone()
+    public Natacao clone()
     {
-        return new Atletismo(super.clone(), this.distancia, this.altitude);
+        return new Natacao(super.clone(), this.tipo, this.distancia);
     }
 }

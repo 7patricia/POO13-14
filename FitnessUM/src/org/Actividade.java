@@ -1,3 +1,5 @@
+package org;
+
 
 /**
  * Super Classe para guardar os dados gerais que podem ser aplicados a todas as actividades. 
