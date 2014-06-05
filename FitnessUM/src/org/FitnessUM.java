@@ -109,8 +109,8 @@ public class FitnessUM
             novo.setDataNascimento(dataNascimento);
             novo.setDesportoFavorito(desporto);
             novo.setNome(nome);
-            novo.setAltura(Integer.parseInt(altura));
-            novo.setPeso(Integer.parseInt(peso));
+            novo.setAltura((double)(Integer.parseInt(altura)));
+            novo.setPeso((double)(Integer.parseInt(peso)));
             
             registos.add(novo);
             return true;
