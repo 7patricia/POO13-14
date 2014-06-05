@@ -6,7 +6,17 @@
 
 package UserInterface;
 
+import java.awt.Container;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
+import org.Atletismo;
+import org.Basquetebol;
+import org.Caminhada;
 import org.FitnessUM;
+import org.Futebol;
+import org.Natacao;
+import org.Voleibol;
 
 /**
  *
@@ -15,6 +25,19 @@ import org.FitnessUM;
 public class AddActividade extends javax.swing.JFrame {
 
     FitnessUM fitnessUM;
+    
+    public static final JScrollPane getScrollPane( JComponent component ) {
+
+         Container p = component .getParent();
+         if (p instanceof JViewport) {
+                Container gp = p.getParent();
+                if (gp instanceof JScrollPane) {
+                    return (JScrollPane)gp;
+                }
+         }
+         return null;
+
+    }
     
     /**
      * Creates new form AddActividade
@@ -30,102 +53,7 @@ public class AddActividade extends javax.swing.JFrame {
         jComboBox2.addItem("Ciclismo");
         jComboBox2.addItem("Atletismo");
         
-        switch((jComboBox2.getSelectedItem().toString()))
-        {
-            case "Natação" :
-            {
-                jLabel6.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(false);
-                jLabel10.setVisible(false);
-                jTextPane3.setVisible(false);
-                jTextPane6.setVisible(false);
-                jTextPane7.setVisible(false);
-                jTextPane8.setVisible(false);
-                
-            }
-                
-            case "Caminhada" :
-            {
-                jLabel6.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(false);
-                jLabel10.setVisible(true);
-                jTextPane3.setVisible(false);
-                jTextPane6.setVisible(false);
-                jTextPane7.setVisible(false);
-                jTextPane8.setVisible(true);
-            }
-            
-            case "Atletismo" :
-            {
-                jLabel6.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(false);jLabel10.setVisible(false);
-                jLabel10.setVisible(false);
-                jTextPane3.setVisible(false);
-                jTextPane4.setVisible(true);
-                jTextPane6.setVisible(false);
-                jTextPane7.setVisible(false);
-                jTextPane8.setVisible(false);
-            }
-            case "Futebol" :
-            {
-               jLabel6.setVisible(false);
-               jLabel7.setVisible(false);
-               jLabel8.setVisible(true);
-               jLabel9.setVisible(false);
-               jLabel10.setVisible(false); 
-               jTextPane4.setVisible(false);
-               jTextPane3.setVisible(false);
-               jTextPane6.setVisible(true);
-               jTextPane7.setVisible(false);
-               jTextPane8.setVisible(false);
-            }
-            case "Ciclismo":
-            {
-                jLabel6.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(false);
-                jLabel10.setVisible(true);
-                jTextPane4.setVisible(true);
-                jTextPane3.setVisible(false);
-                jTextPane6.setVisible(false);
-                jTextPane7.setVisible(false);
-                jTextPane8.setVisible(true);
-                
-            }
-            case "Voleibol":
-            {
-                jLabel6.setVisible(false);
-                jLabel7.setVisible(true);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(false);
-                jLabel10.setVisible(false);
-                jTextPane4.setVisible(false);
-                jTextPane3.setVisible(true);
-                jTextPane6.setVisible(false);
-                jTextPane7.setVisible(false);
-                jTextPane8.setVisible(false);
-            }
-            case "Basquetebol":
-            {
-                jLabel6.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(true);
-                jLabel10.setVisible(false);
-                jTextPane3.setVisible(false);
-                jTextPane6.setVisible(false);
-                jTextPane4.setVisible(false);
-                jTextPane8.setVisible(false);
-                jTextPane7.setVisible(true);
-            }        
-        }
+        
     }
 
     /**
@@ -165,6 +93,9 @@ public class AddActividade extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextPane8 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextPane10 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -177,6 +108,11 @@ public class AddActividade extends javax.swing.JFrame {
 
         jComboBox2.setName("cb_desporto"); // NOI18N
         jComboBox2.setPreferredSize(new java.awt.Dimension(127, 23));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
         jLabel3.setText("Condições Meteorológicas");
@@ -220,104 +156,338 @@ public class AddActividade extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
         jButton1.setText("Adicionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
+        jLabel12.setText("Duração (min)");
+
+        jScrollPane10.setViewportView(jTextPane10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(108, 108, 108))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane5)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(31, 31, 31)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)))
+                        .addGap(340, 340, 340))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(31, 31, 31)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                            .addComponent(jLabel8)
-                            .addComponent(jScrollPane6)
-                            .addComponent(jLabel9)
-                            .addComponent(jScrollPane7))
-                        .addGap(185, 185, 185))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel12)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(22, 22, 22))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jScrollPane3)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jScrollPane6)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel10)))
+                                .addGap(165, 165, 165))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(22, 22, 22))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel8))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        switch((jComboBox2.getSelectedItem().toString()))
+        {
+            case "Natação" :
+                
+                jLabel6.setVisible(true);
+                jTextPane4.setVisible(true);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jLabel10.setVisible(false);
+                jLabel9.setVisible(false);
+                jTextPane3.setVisible(false);
+                getScrollPane(jTextPane3).setVisible(false);
+                jTextPane3.setVisible(false);
+                jTextPane6.setVisible(false);
+                getScrollPane(jTextPane6).setVisible(false);
+                jTextPane7.setVisible(false);
+                getScrollPane(jTextPane7).setVisible(false);
+                jTextPane8.setVisible(false);
+                getScrollPane(jTextPane8).setVisible(false);
+                
+                
+            case "Caminhada" :
+            
+                jLabel6.setVisible(true);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jLabel9.setVisible(false);
+                jLabel10.setVisible(true);
+                jTextPane4.setVisible(true);
+                jTextPane3.setVisible(false);
+                getScrollPane(jTextPane3).setVisible(false);
+                jTextPane6.setVisible(false);
+                getScrollPane(jTextPane6).setVisible(false);
+                jTextPane7.setVisible(false);
+                getScrollPane(jTextPane7).setVisible(false);
+                jTextPane8.setVisible(true);
+            
+            
+            case "Atletismo" :
+            
+                jLabel6.setVisible(true);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jLabel9.setVisible(false);
+                jLabel10.setVisible(true);
+                jLabel10.setVisible(false);
+                jTextPane3.setVisible(false);
+                getScrollPane(jTextPane3).setVisible(false);
+                jTextPane4.setVisible(true);
+                jTextPane6.setVisible(false);
+                getScrollPane(jTextPane6).setVisible(false);
+                jTextPane7.setVisible(false);
+                getScrollPane(jTextPane7).setVisible(false);
+                jTextPane8.setVisible(true);
+             
+            
+            case "Futebol" :
+            
+               jLabel6.setVisible(true);
+               jLabel7.setVisible(false);
+               jLabel8.setVisible(true);
+               jLabel9.setVisible(false);
+               jLabel10.setVisible(false); 
+               jTextPane4.setVisible(true);
+               jTextPane3.setVisible(false);
+               getScrollPane(jTextPane3).setVisible(false);
+               jTextPane6.setVisible(true);
+               jTextPane7.setVisible(false);
+               getScrollPane(jTextPane7).setVisible(false);
+               jTextPane8.setVisible(false);
+               getScrollPane(jTextPane8).setVisible(false);
+            
+            case "Ciclismo":
+            
+                jLabel6.setVisible(true);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jLabel9.setVisible(false);
+                jLabel10.setVisible(true);
+                jTextPane4.setVisible(true);
+                jTextPane3.setVisible(false);
+                getScrollPane(jTextPane3).setVisible(false);
+                jTextPane6.setVisible(false);
+                getScrollPane(jTextPane6).setVisible(false);
+                jTextPane7.setVisible(false);
+                getScrollPane(jTextPane7).setVisible(false);
+                jTextPane8.setVisible(true);
+                
+            
+            case "Voleibol":
+            
+                jLabel6.setVisible(false);
+                jLabel7.setVisible(true);
+                jLabel8.setVisible(false);
+                jLabel9.setVisible(false);
+                jLabel10.setVisible(false);
+                jTextPane4.setVisible(false);
+                getScrollPane(jTextPane4).setVisible(false);
+                jTextPane3.setVisible(true);
+                jTextPane6.setVisible(false);
+                getScrollPane(jTextPane6).setVisible(false);
+                jTextPane7.setVisible(false);
+                getScrollPane(jTextPane7).setVisible(false);
+                jTextPane8.setVisible(false);
+                getScrollPane(jTextPane8).setVisible(false);
+
+            
+            case "Basquetebol":
+            
+                jLabel6.setVisible(true);
+                jLabel7.setVisible(false);
+                jLabel8.setVisible(false);
+                jLabel9.setVisible(true);
+                jLabel10.setVisible(false);
+                jTextPane3.setVisible(false);
+                getScrollPane(jTextPane3).setVisible(false);
+                jTextPane6.setVisible(false);
+                getScrollPane(jTextPane6).setVisible(false);
+                jTextPane4.setVisible(false);
+                jTextPane8.setVisible(false);
+                getScrollPane(jTextPane8).setVisible(false);
+                jTextPane7.setVisible(true);
+
+                   
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        switch((jComboBox2.getSelectedItem().toString()))
+        {
+            case "Natação" :
+            Natacao natacao = new Natacao();
+            
+            natacao.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+            natacao.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+            natacao.setCondMeteo(jTextPane1.getText());
+            natacao.setLocal(jTextPane5.getText());
+            natacao.setData(jTextPane2.getText());
+            
+            this.fitnessUM.adicionaActividade(natacao);
+                
+            case "Caminhada" :
+            Caminhada caminhada = new Caminhada();
+ 
+            caminhada.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+            caminhada.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+            caminhada.setCondMeteo(jTextPane1.getText());
+            caminhada.setLocal(jTextPane5.getText());
+            caminhada.setData(jTextPane2.getText());
+            caminhada.setAltitude((double)(Integer.parseInt(jTextPane8.getText())));
+            
+            this.fitnessUM.adicionaActividade(caminhada);
+            
+            case "Atletismo" :
+             
+            Atletismo atletismo = new Atletismo();
+ 
+            atletismo.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+            atletismo.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+            atletismo.setCondMeteo(jTextPane1.getText());
+            atletismo.setLocal(jTextPane5.getText());
+            atletismo.setData(jTextPane2.getText());
+            atletismo.setAltitude((double)(Integer.parseInt(jTextPane8.getText())));
+            
+            this.fitnessUM.adicionaActividade(atletismo);
+            
+                
+            
+            case "Futebol" :
+            
+            Futebol futebol = new Futebol();
+ 
+            futebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+            futebol.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+            futebol.setCondMeteo(jTextPane1.getText());
+            futebol.setLocal(jTextPane5.getText());
+            futebol.setData(jTextPane2.getText());
+            futebol.setGolos((Integer.parseInt(jTextPane6.getText())));
+            
+            this.fitnessUM.adicionaActividade(futebol); 
+            
+            case "Voleibol":
+            Voleibol voleibol = new Voleibol();
+ 
+            voleibol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+            voleibol.setCondMeteo(jTextPane1.getText());
+            voleibol.setLocal(jTextPane5.getText());
+            voleibol.setData(jTextPane2.getText());
+            voleibol.setPontos((Integer.parseInt(jTextPane3.getText())));
+            
+            this.fitnessUM.adicionaActividade(voleibol);
+               
+            
+            case "Basquetebol":
+            
+            Basquetebol basquetebol = new Basquetebol();
+ 
+            basquetebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+            basquetebol.setCondMeteo(jTextPane1.getText());
+            basquetebol.setLocal(jTextPane5.getText());
+            basquetebol.setData(jTextPane2.getText());
+            basquetebol.setCestos((Integer.parseInt(jTextPane7.getText())));
+            
+            this.fitnessUM.adicionaActividade(basquetebol);   
+                   
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,6 +500,7 @@ public class AddActividade extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -339,6 +510,7 @@ public class AddActividade extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -347,6 +519,7 @@ public class AddActividade extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane10;
     private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane jTextPane3;
     private javax.swing.JTextPane jTextPane4;
