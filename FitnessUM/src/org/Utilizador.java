@@ -129,12 +129,11 @@ public class Utilizador
         return res;
     }
 
-    public ArrayList getActividades()
-    {
-        ArrayList<Actividade> lista = new ArrayList<Actividade>();
+    public ArrayList getActividades(){
+        ArrayList<Actividade> lista = new ArrayList<>();
         for(String key : actividades.keySet())
         {
-            lista.add((actividades.get(key)).clone());
+            lista.add((actividades.get(key)));
         }
         return lista;
     }

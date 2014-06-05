@@ -64,8 +64,11 @@ public class Caminhada extends Actividade
     //ToString, Equals e Clone
     public String toString()
     {
-        StringBuilder s = new StringBuilder("....."); 
+        StringBuilder s = new StringBuilder(); 
         s.append(super.toString());
+        s.append(Double.toString(this.distancia));
+        s.append(" ");
+        s.append(Double.toString(this.altitude));
         return s.toString();
     }
 

@@ -21,6 +21,30 @@ public class FitnessUM
     {
         this.registos = new ArrayList<Utilizador>();
         this.eventos = new TreeMap<String,Evento>(new ComparatorData());
+        Utilizador u1 = new Utilizador();
+        u1.setEmail("dummy@dummy.com");
+        u1.setNome("dummy");
+        u1.setPassword("um123");
+        u1.setAltura(1.83);
+        u1.setPeso(78.0);
+        u1.setGenero("Masculino");
+        u1.setDataNascimento("03-12-1995");
+        u1.setDesportoFavorito("Caminhadas");
+        Utilizador u2 = new Utilizador();
+        u2.setEmail("joseTester@dummy.com");
+        u2.setNome("Jose tester");
+        u2.setPassword("um123");
+        u2.setAltura(1.55);
+        u2.setPeso(55.0);
+        u2.setDataNascimento("06-03-1989");
+        
+        Caminhada a1 = new Caminhada("Chuva",  218.0, 118.0, "Braga", (long) 45,"01-01-2014",5.0, 100.0);
+        Caminhada a2 = new Caminhada("Sol",  208.0, 118.0, "Braga", (long) 45,"05-01-2014",5.0, 100.0);
+        u1.addActividade(a1);
+        u1.addActividade(a2);
+        registos.add(u2);
+        registos.add(u1);
+          
         this.utilizadorLigado = null;
 
     }
