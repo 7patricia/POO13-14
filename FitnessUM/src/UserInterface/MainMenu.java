@@ -22,6 +22,7 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         fitnessUM = new FitnessUM();
         initComponents();
+        jPasswordField1.setText("");
     }
 
     /**
@@ -43,6 +44,7 @@ public class MainMenu extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 0));
@@ -51,14 +53,22 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel2.setText("Email");
 
+        jTextPane1.setMinimumSize(new java.awt.Dimension(14, 200));
         jTextPane1.setName("txt_mail"); // NOI18N
+        jTextPane1.setPreferredSize(new java.awt.Dimension(120, 16));
         jScrollPane1.setViewportView(jTextPane1);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jLabel3.setText("Password");
 
         jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setMinimumSize(new java.awt.Dimension(14, 200));
         jPasswordField1.setName("txt_password"); // NOI18N
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Login");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,6 +83,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         jButton2.setText("Registar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,7 +102,7 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPasswordField1)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -116,7 +131,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,6 +153,15 @@ public class MainMenu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new Registar(this.fitnessUM).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
