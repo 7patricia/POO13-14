@@ -7,6 +7,10 @@
 package UserInterface;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
@@ -22,7 +26,7 @@ import org.Voleibol;
  *
  * @author teste
  */
-public class AddActividade extends javax.swing.JFrame {
+public final class AddActividade extends javax.swing.JFrame{
 
     FitnessUM fitnessUM;
     
@@ -35,25 +39,72 @@ public class AddActividade extends javax.swing.JFrame {
                     return (JScrollPane)gp;
                 }
          }
+         
          return null;
 
     }
     
     /**
      * Creates new form AddActividade
+     * @param fitnessUM
      */
     public AddActividade(FitnessUM fitnessUM) {
         initComponents();
         this.fitnessUM = fitnessUM;
-        jComboBox2.addItem("Natação");
+        jComboBox2.addItem("Natacao");
         jComboBox2.addItem("Caminhada");
         jComboBox2.addItem("Futebol");
         jComboBox2.addItem("Basquetebol");
         jComboBox2.addItem("Voleibol");
         jComboBox2.addItem("Ciclismo");
         jComboBox2.addItem("Atletismo");
+        clearAll();
+        jComboBox2.addActionListener (new ActionListener () {
+                 @Override
+                 public void actionPerformed(ActionEvent e) {
+                 String s = jComboBox2.getSelectedItem().toString();
+                 if(s.equals("Caminhada") || s.equals("Atletismo") || s.equals("Natacao") || s.equals("Ciclismo")){
+                     clearAll();
+                     jLabel6.setVisible(true);                
+                     jTextPane4.setVisible(true);
+                 }
+                 if(s.equals("Futebol")){
+                     clearAll();
+                     jLabel8.setVisible(true);
+                     jTextPane6.setVisible(true);    
+                 }
+                if(s.equals("Voleibol")){
+                     clearAll();
+                     jLabel7.setVisible(true);
+                     jTextPane3.setVisible(true);    
+                 }
+                 if(s.equals("Basquetebol")){
+                     clearAll();
+                     jLabel9.setVisible(true);
+                     jTextPane7.setVisible(true);    
+                 }
+                 
+                 
+
+                     
+           
+                     
+                }
+          });
         
-        
+    }
+    
+    public void clearAll(){
+        jLabel6.setVisible(false);
+        jLabel7.setVisible(false);
+        jLabel8.setVisible(false);
+        jLabel9.setVisible(false);
+        jLabel10.setVisible(false);
+        jTextPane3.setVisible(false);
+        jTextPane4.setVisible(false);
+        jTextPane6.setVisible(false);
+        jTextPane7.setVisible(false);
+        jTextPane8.setVisible(false);
     }
 
     /**
@@ -279,7 +330,7 @@ public class AddActividade extends javax.swing.JFrame {
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
-        switch((jComboBox2.getSelectedItem().toString()))
+       /* switch((jComboBox2.getSelectedItem().toString()))
         {
             case "Natação" :
                 
@@ -403,7 +454,7 @@ public class AddActividade extends javax.swing.JFrame {
                 jTextPane7.setVisible(true);
 
                    
-        }
+        }*/
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -531,4 +582,7 @@ public class AddActividade extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane7;
     private javax.swing.JTextPane jTextPane8;
     // End of variables declaration//GEN-END:variables
+
+
+   
 }
