@@ -484,6 +484,9 @@ public class AddActividade extends javax.swing.JFrame {
             basquetebol.setCestos((Integer.parseInt(jTextPane7.getText())));
             
             this.fitnessUM.adicionaActividade(basquetebol);   
+                
+            new MenuUtilizador(this.fitnessUM).setVisible(true);
+            this.setVisible(false);
                    
         }
         

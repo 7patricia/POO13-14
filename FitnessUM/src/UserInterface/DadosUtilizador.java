@@ -5,19 +5,9 @@
  */
 package UserInterface;
 
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.List;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import org.Actividade;
 import org.FitnessUM;
 import org.Utilizador;
