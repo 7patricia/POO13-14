@@ -264,6 +264,10 @@ public class Utilizador
     {
         return (this.email.equals(mail) && this.password.equals(pass));
     }
+    
+    public boolean verificaMail(String mail){
+            return (this.email.equals(mail));
+    }
 
     /**
      * Função que devolve a lista de actividades de um utilizador num
@@ -435,7 +439,7 @@ public class Utilizador
      */
     public boolean adicionaPedido(Utilizador pedinte){
         for(int i=0; i<this.pedidosAmizade.size()-1;i++)
-            if(this.pedidosAmizade.get(i) == pedinte)
+            if(this.pedidosAmizade.get(i).equals(pedinte))
             {
                 this.pedidosAmizade.add(pedinte);
                 return true;

@@ -6,7 +6,10 @@
 
 package UserInterface;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.FitnessUM;
+import org.Utilizador;
 
 /**
  *
@@ -43,6 +46,8 @@ public class MenuUtilizador extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,8 +66,18 @@ public class MenuUtilizador extends javax.swing.JFrame {
         });
 
         jButton1.setText("Pedidos Amizade");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Amigos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Adicionar Actividade");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +94,15 @@ public class MenuUtilizador extends javax.swing.JFrame {
             public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
+
+        jButton4.setText("Lista Actividades");
+
+        jButton6.setText("Adicionar Amigo");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,7 +126,9 @@ public class MenuUtilizador extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -116,13 +142,17 @@ public class MenuUtilizador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jToggleButton1)
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)
-                        .addGap(29, 29, 29)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton3)
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton5))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -143,16 +173,57 @@ public class MenuUtilizador extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         List<Utilizador> pedidosAmizade = this.fitnessUM.getUtilizadorLigado().getPedidosAmizade();
+        if (!pedidosAmizade.isEmpty()) {
+            List<ArrayList<String>> aux = new ArrayList<>();
+            int i;
+            for (i = 0; i < pedidosAmizade.size(); i++) {
+                    ArrayList<String> aux1 =  new ArrayList<>();
+                    aux1.add(pedidosAmizade.get(i).getNome());
+                    aux1.add(pedidosAmizade.get(i).getEmail());
+
+            }
+            
+                jList1.setListData(aux.toArray());  
+    }//GEN-LAST:event_jButton1ActionPerformed
+    }
+    
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        new AddAmigo(this.fitnessUM).setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        List<Utilizador> amigos = this.fitnessUM.getUtilizadorLigado().getAmigos();
+        if (!amigos.isEmpty()) {
+            List<ArrayList<String>> aux = new ArrayList<>();
+            int i;
+            for (i = 0; i < amigos.size(); i++) {
+                    ArrayList<String> aux1 =  new ArrayList<>();
+                    aux1.add(amigos.get(i).getNome());
+                    aux1.add(amigos.get(i).getEmail());
+
+            }
+            
+                jList1.setListData(aux.toArray());  
+    }//GEN-LAST:event_jButton2ActionPerformed
+    }
     /**
      * @param args the command line arguments
      */
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList jList1;

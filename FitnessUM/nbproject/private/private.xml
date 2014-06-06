@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/teste/Dropbox/PC/Documentos/LEI%202.2/POO13-14/FitnessUM/src/org/Atletismo.java</file>
-            <file>file:/home/teste/Dropbox/PC/Documentos/LEI%202.2/POO13-14/FitnessUM/src/org/Administrador.java</file>
-            <file>file:/home/teste/Dropbox/PC/Documentos/LEI%202.2/POO13-14/FitnessUM/src/org/ActVelocidade.java</file>
-            <file>file:/home/teste/Dropbox/PC/Documentos/LEI%202.2/POO13-14/FitnessUM/src/org/ComparatorAtletismo.java</file>
-            <file>file:/home/teste/Dropbox/PC/Documentos/LEI%202.2/POO13-14/FitnessUM/src/org/Basquetebol.java</file>
-            <file>file:/home/teste/Dropbox/PC/Documentos/LEI%202.2/POO13-14/FitnessUM/src/org/Actividade.java</file>
+            <file>file:/home/teste/POO13-14/FitnessUM/src/org/Actividade.java</file>
+            <file>file:/home/teste/POO13-14/FitnessUM/src/UserInterface/MainMenu.java</file>
+            <file>file:/home/teste/POO13-14/FitnessUM/src/UserInterface/AddActividade.java</file>
+            <file>file:/home/teste/POO13-14/FitnessUM/src/UserInterface/DadosUtilizador.java</file>
+            <file>file:/home/teste/POO13-14/FitnessUM/src/UserInterface/MenuUtilizador.java</file>
+            <file>file:/home/teste/POO13-14/FitnessUM/src/org/Atletismo.java</file>
+            <file>file:/home/teste/POO13-14/FitnessUM/src/org/Administrador.java</file>
+            <file>file:/home/teste/POO13-14/FitnessUM/src/org/Ciclismo.java</file>
+            <file>file:/home/teste/POO13-14/FitnessUM/src/org/Caminhada.java</file>
         </group>
     </open-files>
 </project-private>

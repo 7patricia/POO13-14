@@ -44,6 +44,7 @@ public class FitnessUM
         u1.addActividade(a2);
         registos.add(u2);
         registos.add(u1);
+        
           
         this.utilizadorLigado = null;
 
@@ -54,6 +55,7 @@ public class FitnessUM
         this.registos = new ArrayList<Utilizador>(r);
         this.eventos = new TreeMap<String,Evento>(e);
         this.utilizadorLigado = u;
+        
 
     }
 
@@ -113,6 +115,8 @@ public class FitnessUM
         }
         return utilizadorLigado != null;
     }
+    
+     
 
     /**
      * Função que verifica se um utilizador já está registado e se não estiver 
@@ -143,7 +147,7 @@ public class FitnessUM
      * Função que verifica se um utilizador está registado e se sim remove-o da lista
      * de registos
      */
-    public boolean remover(String mail, String pass)
+    public boolean remover(String mail,String pass)
     {
         if(checkUser(mail,pass) == true) 
         {
@@ -157,11 +161,24 @@ public class FitnessUM
      * Função que retorna a posição de um utilizador no ArrayList de registos
      * (se ele tiver registado, se não retorna menos um)
      */
-    public int userIndice (String mail, String pass)
+    public int userIndice (String mail,String pass)
     {
         for(int i=0; i<registos.size()-1;i++)
         {
             if(registos.get(i).verificaDados(mail,pass) == true) return i;
+        }
+        return -1;
+    }
+    
+    /**
+     * Função que retorna a posição de um utilizador no ArrayList de registos
+     * (se ele tiver registado, se não retorna menos um)
+     */
+    public int userIndiceMail (String mail)
+    {
+        for(int i=0; i<registos.size()-1;i++)
+        {
+            if(registos.get(i).verificaMail(mail) == true) return i;
         }
         return -1;
     }
