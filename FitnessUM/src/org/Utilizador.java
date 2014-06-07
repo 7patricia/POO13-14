@@ -103,10 +103,11 @@ public class Utilizador {
 
     public ArrayList<Utilizador> getAmigos() {
         ArrayList<Utilizador> res = new ArrayList<Utilizador>();
+        System.out.println(amigos.size());
+        if(!this.amigos.isEmpty()){
         for (Utilizador u : this.amigos) {
-            for (int i = 0; i < amigos.size() - 1; i++) {
-                res.add(i, u.clone());
-            }
+              res.add(u);
+        }
         }
         return res;
     }
@@ -115,9 +116,7 @@ public class Utilizador {
         ArrayList<Utilizador> res = new ArrayList<Utilizador>();
         if (!this.pedidosAmizade.isEmpty()) {
             for (Utilizador u : this.pedidosAmizade) {
-                for (int i = 0; i < pedidosAmizade.size() - 1; i++) {
-                    res.add(i, u.clone());
-                }
+                    res.add(u);
             }
         }
         return res;
@@ -287,9 +286,6 @@ public class Utilizador {
         TreeMap<String, Actividade> res = new TreeMap<String, Actividade>();
         if (!this.actividades.isEmpty()) {
             for (String key : actividades.keySet()) {
-                System.out.println(String.valueOf(parseData(key).get(Calendar.YEAR)));
-                System.out.println(String.valueOf(parseData(key).get(Calendar.MONTH)));
-                System.out.println(String.valueOf(parseData(key).get(Calendar.DAY_OF_MONTH)));
                 if (String.valueOf(parseData(key).get(Calendar.MONTH)).equals(mes)) {
                     res.put(key, actividades.get(key).clone());
                 }
@@ -305,10 +301,8 @@ public class Utilizador {
      * @return 
      */
     public TreeMap<String, Actividade> actividadesAno(String ano) {
-        System.out.println(ano);
         TreeMap<String, Actividade> res = new TreeMap<>();
         if(!this.actividades.isEmpty()){
-        System.out.println("ha actividades");
         for (String key : actividades.keySet()) {
             if (String.valueOf(parseData(key).get(Calendar.YEAR)).equals(ano)) {
                 res.put(key, actividades.get(key).clone());
@@ -440,16 +434,11 @@ public class Utilizador {
     }
 
     /**
-     * Função que adiciona um pedido de amizade da lista de pedidos
+     * Função que adiciona um pedido d
+     * @param pedintee amizade da lista de pedidos
      */
-    public boolean adicionaPedido(Utilizador pedinte) {
-        for (int i = 0; i < this.pedidosAmizade.size() - 1; i++) {
-            if (this.pedidosAmizade.get(i).equals(pedinte)) {
-                this.pedidosAmizade.add(pedinte);
-                return true;
-            }
-        }
-        return false;
+    public void adicionaPedido(Utilizador pedinte) {
+          this.pedidosAmizade.add(pedinte);
     }
 
     /**

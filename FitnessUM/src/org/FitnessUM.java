@@ -68,7 +68,11 @@ public class FitnessUM
 
     public void setUtilizadorLigado(Utilizador u)
     {
-        this.utilizadorLigado = u.clone(); 
+        if(u!=null){
+        this.utilizadorLigado = u; }
+        else{
+            this.utilizadorLigado = null;
+        }
     }
     
     public void setAdmin(Administrador a)
@@ -79,13 +83,13 @@ public class FitnessUM
     public void setEventos(TreeMap<String,Evento> e)
     {
         for(Evento even : e.values())
-            this.eventos.put(even.getData(),even.clone());
+            this.eventos.put(even.getData(),even);
     }
 
     public void setRegistos(ArrayList<Utilizador> r)
     {
         for(int i=0;i<r.size()-1;i++)
-            this.registos.add(r.get(i).clone());
+            this.registos.add(r.get(i));
     }
 
     public Utilizador getUtilizadorLigado()
@@ -100,18 +104,14 @@ public class FitnessUM
 
     public ArrayList<Utilizador> getRegistos()
     {
-        ArrayList<Utilizador> res = new ArrayList<Utilizador>();
-        for(Utilizador u : this.registos)
-            for(int i =0;i<registos.size()-1;i++)
-                res.add(i,u.clone());
-        return res;
+        return this.registos;
     }
 
     public TreeMap<String,Evento> getEventos()
     {
         TreeMap<String,Evento> res = new TreeMap<String,Evento>(new ComparatorData());
         for(Evento e : this.eventos.values())
-            res.put(e.getData(),e.clone());
+            res.put(e.getData(),e);
         return res;  
     }
 
@@ -151,7 +151,6 @@ public class FitnessUM
             novo.setDataNascimento(dataNascimento);
             novo.setDesportoFavorito(desporto);
             novo.setNome(nome);
-            System.out.println(altura);
             novo.setAltura((double)(Integer.parseInt(altura)));
             novo.setPeso((double)(Integer.parseInt(peso)));
             

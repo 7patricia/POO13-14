@@ -5,13 +5,16 @@
  */
 package UserInterface;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import org.Actividade;
 import org.FitnessUM;
 import org.Utilizador;
@@ -30,17 +33,29 @@ public class MenuUtilizador extends javax.swing.JFrame {
     public MenuUtilizador(final FitnessUM fitnessUM) {
         this.fitnessUM = fitnessUM;
         initComponents();
-        jLabel3.setVisible(false);
-        jButton1.setVisible(false);
-        jComboBox1.setVisible(false);
-        jComboBox2.setVisible(false);
-        jComboBox3.setVisible(false);
-        jComboBox5.setVisible(false);
+        allClear();
+
         jLabel2.setText(this.fitnessUM.getUtilizadorLigado().getNome());
         if (!this.fitnessUM.getUtilizadorLigado().getPedidosAmizade().isEmpty()) {
             jLabel3.setVisible(true);
             jButton1.setVisible(true);
         }
+           jList1.addListSelectionListener(new ListSelectionListener() {
+
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                    if(jTextField1.isVisible() && jList1.getSelectedValue()!=null){
+                        jButton7.setVisible(true);               
+                    }
+                    if(jButton1.isVisible()){
+                        jButton8.setVisible(true);
+                        jButton9.setVisible(true);
+                    }
+                    else{
+                        jButton10.setVisible(true);
+                    }
+                }
+            });
         jComboBox2.addItem("2014");
         jComboBox2.addItem("2013");
         jComboBox2.addItem("2012");
@@ -52,7 +67,7 @@ public class MenuUtilizador extends javax.swing.JFrame {
         jComboBox3.addItem("Abril");
         jComboBox3.addItem("Maio");
         jComboBox3.addItem("Junho");
-        jComboBox3.addItem("Julho");        
+        jComboBox3.addItem("Julho");
         jComboBox3.addItem("Agosto");
         jComboBox3.addItem("Setembro");
         jComboBox3.addItem("Outubro");
@@ -98,7 +113,7 @@ public class MenuUtilizador extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-              JOptionPane.showMessageDialog(null, "Nao Suportado :(");
+                JOptionPane.showMessageDialog(null, "Nao Suportado :(");
             }
         });
 
@@ -147,6 +162,7 @@ public class MenuUtilizador extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,12 +202,12 @@ public class MenuUtilizador extends javax.swing.JFrame {
         });
 
         jButton5.setText("Eventos");
-
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
         });
+
         jScrollPane1.setViewportView(jList1);
 
         jButton4.setText("Lista Actividades");
@@ -228,12 +244,39 @@ public class MenuUtilizador extends javax.swing.JFrame {
         });
 
         jButton8.setText("Aceitar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Recusar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Ver Perfil");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Procurar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setText("Sair");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,7 +296,8 @@ public class MenuUtilizador extends javax.swing.JFrame {
                                 .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -294,7 +338,7 @@ public class MenuUtilizador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(7, 7, 7))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -313,27 +357,31 @@ public class MenuUtilizador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton8)
+                            .addComponent(jButton9)
+                            .addComponent(jButton10)))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jToggleButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
-                        .addGap(18, 18, 18)
+                        .addGap(24, 24, 24)
                         .addComponent(jButton6)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10)))
+                        .addComponent(jButton5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton12)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -341,12 +389,14 @@ public class MenuUtilizador extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        new DadosUtilizador(this.fitnessUM).setVisible(true);
+        allClear();
+        new DadosUtilizador(this.fitnessUM,this.fitnessUM.getUtilizadorLigado()).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        allClear();
         new AddActividade(this.fitnessUM).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -357,40 +407,59 @@ public class MenuUtilizador extends javax.swing.JFrame {
         if (!pedidosAmizade.isEmpty()) {
             List<ArrayList<String>> aux = new ArrayList<>();
             int i;
-            for (i = 0; i < pedidosAmizade.size(); i++) {
+            for (Utilizador u : pedidosAmizade) {
                 ArrayList<String> aux1 = new ArrayList<>();
-                aux1.add(pedidosAmizade.get(i).getNome());
-                aux1.add(pedidosAmizade.get(i).getEmail());
-
+                aux1.add(u.getEmail());
+                aux1.add(u.getNome());
+                aux.add(aux1);
             }
-
             jList1.setListData(aux.toArray());
     }//GEN-LAST:event_jButton1ActionPerformed
     }
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        new AddAmigo(this.fitnessUM).setVisible(true);
+        //new AddAmigo(this.fitnessUM).setVisible(true);
+        allClear();
+        jTextField1.setVisible(true);
+        jButton11.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void allClear() {
+        jTextField1.setVisible(false);
+        jButton11.setVisible(false);
+        jLabel3.setVisible(false);
+        jButton1.setVisible(false);
+        jComboBox1.setVisible(false);
+        jComboBox2.setVisible(false);
+        jComboBox3.setVisible(false);
+        jComboBox5.setVisible(false);
+        jButton7.setVisible(false);
+        jButton8.setVisible(false);
+        jButton9.setVisible(false);
+        jButton10.setVisible(false);
+        jButton11.setVisible(false);
+    }
+
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        allClear();
+        List<ArrayList<String>> aux = new ArrayList<>();
+        jList1.setListData(aux.toArray());
         List<Utilizador> amigos = this.fitnessUM.getUtilizadorLigado().getAmigos();
-        if (!amigos.isEmpty()) {
-            List<ArrayList<String>> aux = new ArrayList<>();
-            int i;
-            for (i = 0; i < amigos.size(); i++) {
+        for(Utilizador u : amigos){
                 ArrayList<String> aux1 = new ArrayList<>();
-                aux1.add(amigos.get(i).getNome());
-                aux1.add(amigos.get(i).getEmail());
-
+                aux1.add(u.getEmail());
+                aux1.add(u.getNome());
+                aux.add(aux1);
             }
-
             jList1.setListData(aux.toArray());
     }//GEN-LAST:event_jButton2ActionPerformed
-    }
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        allClear();
         jComboBox1.addItem("Ano");
         jComboBox1.addItem("Mes");
         jComboBox1.addItem("Tipo");
@@ -426,7 +495,118 @@ public class MenuUtilizador extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        int i = 0;
+        String s = jList1.getSelectedValue().toString();
+        if(!s.isEmpty()){
+          String s1 = s.split(",")[0].replace("[", "");
+          for(Utilizador u : fitnessUM.getRegistos()){
+              if(u.getEmail().equals(s1)){
+                  if(u.getPedidosAmizade().contains(fitnessUM.getUtilizadorLigado())){
+                    JOptionPane.showMessageDialog(null, "Já fez um pedido a este utilizador");  
+                  }
+                  if(u.getAmigos().contains(fitnessUM.getUtilizadorLigado())){
+                    JOptionPane.showMessageDialog(null, "Já são amigos");  
+                  }
+                  else{
+                     fitnessUM.getRegistos().get(i).adicionaPedido(fitnessUM.getUtilizadorLigado());
+                     JOptionPane.showMessageDialog(null, "Pedido Feito");  
+                  }
+                  i++;
+              }
+          }
+        }
+        else{
+          JOptionPane.showMessageDialog(null, "Selecione um Utilizador Valido");  
+        } 
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        String nomeUtilizador = jTextField1.getText();
+        ArrayList<List<String>> aux = new ArrayList<>();
+        for (Utilizador u : fitnessUM.getRegistos()) {
+            List<String> aux1 = new ArrayList<>();
+            if (u.getEmail().contains(nomeUtilizador) || u.getNome().contains(nomeUtilizador)) {
+                aux1.add(u.getEmail());
+                aux1.add(u.getNome());
+                aux.add(aux1);
+            }
+        }
+        if (aux.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nao ha Actividades para esse Mes");
+        } else {
+            jList1.setListData(aux.toArray());
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        allClear();
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        String s = jList1.getSelectedValue().toString();
+        if(!s.isEmpty()){
+          String s1 = s.split(",")[0].replace("[", "");
+          System.out.println("huuuuum");
+          System.out.println(s1);
+          for(Utilizador u : fitnessUM.getRegistos()){
+              if(u.getEmail().equals(s1)){
+                  System.out.println("hum");
+                  fitnessUM.getUtilizadorLigado().adicionaAmigo(u);
+                  u.adicionaAmigo(fitnessUM.getUtilizadorLigado());
+                  JOptionPane.showMessageDialog(null, "Amigo Adicionado");  
+              }
+          }
+        }
+        else{
+          JOptionPane.showMessageDialog(null, "Selecione um Utilizador Valido");  
+        }         
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+         String s = jList1.getSelectedValue().toString();
+        if(!s.isEmpty()){
+          String s1 = s.split(",")[0].replace("[", "");
+          for(Utilizador u : fitnessUM.getRegistos()){
+              if(u.getEmail().equals(s1)){
+                  fitnessUM.getUtilizadorLigado().removePedido(u);         
+              }
+          }
+        }
+        else{
+          JOptionPane.showMessageDialog(null, "Selecione um Utilizador Valido");  
+        } 
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        fitnessUM.setUtilizadorLigado(null);
+        new MainMenu(fitnessUM).setVisible(true);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        String s = jList1.getSelectedValue().toString();
+        if(!s.isEmpty()){
+          String s1 = s.split(",")[0].replace("[", "");
+          for(Utilizador u : fitnessUM.getRegistos()){
+              if(u.getEmail().equals(s1)){
+                  this.setVisible(false); 
+                  new DadosUtilizador(this.fitnessUM,u).setVisible(true);
+              }
+          }
+        }
+        else{
+          JOptionPane.showMessageDialog(null, "Selecione um Utilizador Valido");  
+        } 
+        
+       
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -436,6 +616,7 @@ public class MenuUtilizador extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

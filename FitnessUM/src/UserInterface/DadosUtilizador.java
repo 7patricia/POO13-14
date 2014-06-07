@@ -28,10 +28,10 @@ public class DadosUtilizador extends javax.swing.JFrame {
         
   
     
-    public DadosUtilizador(FitnessUM fitnessUM) {
+    public DadosUtilizador(FitnessUM fitnessUM, Utilizador ua) {
         initComponents();
         this.fitnessUM = fitnessUM;
-        Utilizador u = fitnessUM.getUtilizadorLigado();
+        Utilizador u = ua;
         jLabel18.setText(u.getEmail());
         jLabel20.setText(u.getNome());
         jLabel21.setText(u.getDataNascimento());
@@ -160,7 +160,6 @@ public class DadosUtilizador extends javax.swing.JFrame {
         jLabel24.setText("Desp. Fav.");
 
         jButton1.setText("Voltar");
-        jButton1.setActionCommand("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
