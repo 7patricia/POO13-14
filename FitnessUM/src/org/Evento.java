@@ -7,8 +7,9 @@ package org;
  * @author (your name) 
  * @version (a version number or a date)
  */
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Evento
+public class Evento  implements Serializable
 {
     // Variáveis de Instância
     private String nome;

@@ -1,13 +1,15 @@
 package org;
 
+import java.io.Serializable;
+
 
 /**
  * Write a description of class Voleibol here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
- */
-public class Voleibol extends Actividade
+ */ 
+public class Voleibol extends Actividade implements Serializable
 {
     //Variáveis de Instância
     private int pontos;

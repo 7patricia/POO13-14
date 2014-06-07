@@ -7,10 +7,11 @@ package org;
  * @author (your name) 
  * @version (a version number or a date)
  */
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class FitnessUM
+public class FitnessUM implements Serializable
 { 
     // instance variables - replace the example below with your own
     protected ArrayList<Utilizador> registos;
