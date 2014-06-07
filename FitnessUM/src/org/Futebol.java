@@ -1,5 +1,7 @@
 package org;
 
+import java.io.Serializable;
+
 
 /**
  * Write a description of class Futebol here.
@@ -7,7 +9,7 @@ package org;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Futebol extends Actividade
+public class Futebol extends Actividade implements Serializable
 {
     //Variáveis de Instância
     private int golos;

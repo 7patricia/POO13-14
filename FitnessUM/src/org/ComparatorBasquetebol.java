@@ -11,7 +11,7 @@ package org;
 import java.util.Comparator;
 import java.io.Serializable;
 
-public class ComparatorBasquetebol implements Comparator<Object> 
+public class ComparatorBasquetebol implements Comparator<Object> , Serializable
 {
     public int compare(Object b1, Object b2)
     {

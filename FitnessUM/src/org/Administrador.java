@@ -6,9 +6,10 @@ package org;
  * @author Grupo17
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
-public class Administrador
+public class Administrador implements Serializable
 {
     // instance variables
     private String nome;

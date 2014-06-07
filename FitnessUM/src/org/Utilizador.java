@@ -5,6 +5,7 @@ package org;
  *
  * @author Grupo 17
  */
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -15,7 +16,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Collections;
 
-public class Utilizador {
+public class Utilizador implements Serializable{
 
     //Variáveis de Instância
     private String nome;

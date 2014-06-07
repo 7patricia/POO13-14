@@ -1,5 +1,7 @@
 package org;
 
+import java.io.Serializable;
+
 /**
  * Super Classe para guardar os dados gerais que podem ser aplicados a todas as
  * actividades.
@@ -7,7 +9,7 @@ package org;
  * @author Grupo 17
  *
  */
-public class Actividade {
+public class Actividade implements Serializable{
 
     //Variáveis de Instância
     protected String condMeteo;
@@ -99,6 +101,7 @@ public class Actividade {
     public void setTipo(String t) {
         this.tipo = t;
     }
+    
 
     //getClass, ToString, Equals e Clone
     public String toString() {

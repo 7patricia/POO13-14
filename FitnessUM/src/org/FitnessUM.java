@@ -7,27 +7,28 @@ package org;
  * @author (your name) 
  * @version (a version number or a date)
  */
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class FitnessUM
-{
+public class FitnessUM implements Serializable
+{ 
     // instance variables - replace the example below with your own
     protected ArrayList<Utilizador> registos;
     protected TreeMap<String,Evento> eventos;
     protected Utilizador utilizadorLigado;
-    protected Administrador admin;
+    public Administrador admin;
     
 
     public FitnessUM()
     {
         this.registos = new ArrayList<Utilizador>();
         this.eventos = new TreeMap<String,Evento>(new ComparatorData());
+        admin =  new Administrador();
+        admin.setEmail("admin");
+        admin.setPassword("admin");
+        admin.setNome("admin");
         Utilizador u1 = new Utilizador();
-        Administrador a =  new Administrador();
-        a.setEmail("admin");
-        a.setPassword("admin");
-        a.setNome("admin");
         u1.setEmail("dummy@dummy.com");
         u1.setNome("dummy");
         u1.setPassword("um123");
@@ -131,6 +132,27 @@ public class FitnessUM
             if(u.verificaDados(mail,pass) == true) utilizadorLigado = u;
         }
         return utilizadorLigado != null;
+    }
+    
+     /**
+     * Função que verifica se um dado e-mail e password correspondem a um utilizador 
+     * registado e se sim faz o login
+     * @param mail
+     * @param pass
+     * @return 
+     **/
+    public boolean checkAdmin (String mail, String pass)
+    {
+        if(mail.equals("admin") && (pass.equals("admin")))
+        {
+            Administrador a = new Administrador("admin", "admin", "admin");
+            this.admin = a;
+            return true;
+            
+        }
+        else
+            return false;
+            
     }
     
      
