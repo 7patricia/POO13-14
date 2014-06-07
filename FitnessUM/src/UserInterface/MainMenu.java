@@ -141,6 +141,12 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         String mail = jTextPane1.getText();
         String password = jPasswordField1.getText();
+        
+        if((jTextPane1.getText().equals("admin")) && (jPasswordField1.getText().equals("admin"))){
+            JOptionPane.showMessageDialog(null, "Administrador logado com sucesso!");
+            new MenuAdmin(this.fitnessUM).setVisible(true);
+            this.setVisible(false);}
+        else {
         boolean aux = fitnessUM.checkUser(mail,password);
         if(aux == true){
             JOptionPane.showMessageDialog(null, "Logado com sucesso");
@@ -149,6 +155,7 @@ public class MainMenu extends javax.swing.JFrame {
         }
         else{
             JOptionPane.showMessageDialog(null, "Dados incorrectos");
+        }
         }
     }//GEN-LAST:event_jButton1login
 

@@ -7,28 +7,28 @@ package org;
  */
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 public class Administrador
 {
-    // instance variables - replace the example below with your own
+    // instance variables
     private String nome;
     private String email;
     private String password;
-    private ArrayList<Utilizador> utilizadores;
+    
+
     //Construtores
     public Administrador()
     {
         this.nome="";
         this.email="";
         this.password="";
-        this.utilizadores= new ArrayList<Utilizador>();
     }
 
-    public Administrador(String n, String e, String p, ArrayList<Utilizador> u)
+    public Administrador(String n, String e, String p)
     {
         this.nome = n;
         this.email = e;
         this.password = p;
-        this.utilizadores = u;
     }
 
     //Métodos de Instância
@@ -47,14 +47,6 @@ public class Administrador
         return this.email;
     }
 
-    public ArrayList<Utilizador> getUtilizadores ()
-    {
-        ArrayList<Utilizador> res = new ArrayList<Utilizador>();
-        for(Utilizador u : this.utilizadores)
-            for(int i =0;i<utilizadores.size()-1;i++)
-                res.add(i,u.clone());
-        return res;
-    }
 
     public void setNome(String n)
     {
@@ -71,13 +63,7 @@ public class Administrador
         this.email=e;
     }
 
-    public void setUtilizadores(ArrayList<Utilizador> u)
-    {
-        int i;
-        for(i=0;i<u.size()-1;i++)
-            this.utilizadores.add(u.get(i).clone());
-    }
-
+    
     /**
      * Função para aceitar ou rejeitar a inscrição de um utilizador num evento
      */
@@ -110,7 +96,7 @@ public class Administrador
     public Administrador clone()
 
     {
-        return new Administrador(this.nome, this.email, this.password, this.utilizadores);
+        return new Administrador(this.nome, this.email, this.password);
     }
 
     public String toString()
