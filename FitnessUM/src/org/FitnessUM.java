@@ -38,8 +38,8 @@ public class FitnessUM
         u2.setPeso(55.0);
         u2.setDataNascimento("06-03-1989");
         
-        Caminhada a1 = new Caminhada("Chuva",  218.0, 118.0, "Braga", (long) 45,"01-01-2014",5.0, 100.0);
-        Caminhada a2 = new Caminhada("Sol",  208.0, 118.0, "Braga", (long) 45,"05-01-2014",5.0, 100.0);
+        Caminhada a1 = new Caminhada("Chuva",  218.0, 118.0, "Braga", (long) 45,"1-01-2014",5.0, 100.0);
+        Caminhada a2 = new Caminhada("Sol",  208.0, 118.0, "Braga", (long) 45,"5-03-2014",5.0, 100.0);
         u1.addActividade(a1);
         u1.addActividade(a2);
         registos.add(u2);

@@ -259,35 +259,37 @@ public class Utilizador {
      */
     public TreeMap<String, Actividade> actividadesMes(String mes) {
         if(mes.equals("Janeiro")){
-            mes = "01";
+            mes = "0";
         }
         if(mes.equals("Fevereiro")){
-            mes = "02";
+            mes = "1";
         }if(mes.equals("Marco")){
-            mes = "03";
+            mes = "2";
         }if(mes.equals("Abril")){
-            mes = "04";
+            mes = "3";
         }if(mes.equals("Maio")){
-            mes = "05";
+            mes = "4";
         }if(mes.equals("Junho")){
-            mes = "06";
+            mes = "5";
         }if(mes.equals("Julho")){
-            mes = "07";
+            mes = "6";
         }if(mes.equals("Agosto")){
-            mes = "08";
+            mes = "7";
         }if(mes.equals("Setembro")){
-            mes = "09";
+            mes = "8";
         }if(mes.equals("Outubro")){
-            mes = "10";
+            mes = "9";
         }if(mes.equals("Novembro")){
-            mes = "11";
+            mes = "10";
         }if(mes.equals("Dezembro")){
-            mes = "12";
+            mes = "11";
         }
         TreeMap<String, Actividade> res = new TreeMap<String, Actividade>();
         if (!this.actividades.isEmpty()) {
             for (String key : actividades.keySet()) {
+                System.out.println(String.valueOf(parseData(key).get(Calendar.YEAR)));
                 System.out.println(String.valueOf(parseData(key).get(Calendar.MONTH)));
+                System.out.println(String.valueOf(parseData(key).get(Calendar.DAY_OF_MONTH)));
                 if (String.valueOf(parseData(key).get(Calendar.MONTH)).equals(mes)) {
                     res.put(key, actividades.get(key).clone());
                 }
