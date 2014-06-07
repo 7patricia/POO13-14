@@ -539,7 +539,7 @@ public class MenuUtilizador extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Já são amigos");  
                   }
                   else{
-                     fitnessUM.getRegistos().get(i).adicionaPedido(fitnessUM.getUtilizadorLigado());
+                     u.adicionaPedido(fitnessUM.getUtilizadorLigado());
                      JOptionPane.showMessageDialog(null, "Pedido Feito");  
                   }
                   i++;
@@ -587,6 +587,7 @@ public class MenuUtilizador extends javax.swing.JFrame {
               if(u.getEmail().equals(s1)){
                   System.out.println("hum");
                   fitnessUM.getUtilizadorLigado().adicionaAmigo(u);
+                  fitnessUM.getUtilizadorLigado().removePedido(u);
                   u.adicionaAmigo(fitnessUM.getUtilizadorLigado());
                   JOptionPane.showMessageDialog(null, "Amigo Adicionado");  
               }

@@ -28,11 +28,11 @@ public class Utilizador implements Serializable{
     private String dataNascimento;
     private String desportoFavorito;
     private final List<Utilizador> amigos;
-    private TreeMap<String, Actividade> actividades;
-    private HashMap<String, ArrayList<Actividade>> records;
-    private TreeMap<String, Evento> eventosInscrito;
-    private TreeMap<String, Evento> eventosPendentes;
-    private ArrayList<Utilizador> pedidosAmizade;
+    private final TreeMap<String, Actividade> actividades;
+    private final HashMap<String, ArrayList<Actividade>> records;
+    private final TreeMap<String, Evento> eventosInscrito;
+    private final TreeMap<String, Evento> eventosPendentes;
+    private final ArrayList<Utilizador> pedidosAmizade;
 
     //Construtores
     public Utilizador() {
@@ -44,12 +44,12 @@ public class Utilizador implements Serializable{
         this.peso = 0.0;
         this.dataNascimento = "";
         this.desportoFavorito = "";
-        this.amigos = new ArrayList<Utilizador>();
-        this.actividades = new TreeMap<String, Actividade>(new ComparatorData());
-        this.records = new HashMap<String, ArrayList<Actividade>>();
+        this.amigos = new ArrayList<>();
+        this.actividades = new TreeMap<>(new ComparatorData());
+        this.records = new HashMap<>();
         this.pedidosAmizade = new ArrayList<>();
-        this.eventosInscrito = new TreeMap<String, Evento>(new ComparatorData());
-        this.eventosPendentes = new TreeMap<String, Evento>(new ComparatorData());
+        this.eventosInscrito = new TreeMap<>(new ComparatorData());
+        this.eventosPendentes = new TreeMap<>(new ComparatorData());
     }
 
     public Utilizador(String n, String e, String pss, String g, double a, double p, String d, String f, List<Utilizador> am, TreeMap<String, Actividade> ac, HashMap<String, ArrayList<Actividade>> rec, TreeMap<String, Evento> ei, TreeMap<String, Evento> ep) {
@@ -425,13 +425,14 @@ public class Utilizador implements Serializable{
      * Função que remove um pedido de amizade da lista de pedidos
      */
     public boolean removePedido(Utilizador pedinte) {
-        for (int i = 0; i < this.pedidosAmizade.size() - 1; i++) {
-            if (this.pedidosAmizade.get(i) == pedinte) {
-                this.pedidosAmizade.remove(pedinte);
-                return true;
-            }
-        }
-        return false;
+             if(this.pedidosAmizade.contains(pedinte)){
+                 this.pedidosAmizade.remove(pedinte);
+                 return true;
+             }
+            
+             else{
+                return false;
+             }
     }
 
     /**
@@ -440,6 +441,7 @@ public class Utilizador implements Serializable{
      */
     public void adicionaPedido(Utilizador pedinte) {
           this.pedidosAmizade.add(pedinte);
+          System.out.println(this.pedidosAmizade.size());
     }
 
     /**
