@@ -1,22 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 
 package UserInterface;
 
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 import org.Atletismo;
 import org.Basquetebol;
 import org.Caminhada;
+import org.Ciclismo;
 import org.FitnessUM;
 import org.Futebol;
 import org.Natacao;
@@ -27,21 +27,21 @@ import org.Voleibol;
  * @author teste
  */
 public final class AddActividade extends javax.swing.JFrame{
-
+    
     FitnessUM fitnessUM;
     
     public static final JScrollPane getScrollPane( JComponent component ) {
-
-         Container p = component .getParent();
-         if (p instanceof JViewport) {
-                Container gp = p.getParent();
-                if (gp instanceof JScrollPane) {
-                    return (JScrollPane)gp;
-                }
-         }
-         
-         return null;
-
+        
+        Container p = component .getParent();
+        if (p instanceof JViewport) {
+            Container gp = p.getParent();
+            if (gp instanceof JScrollPane) {
+                return (JScrollPane)gp;
+            }
+        }
+        
+        return null;
+        
     }
     
     /**
@@ -60,37 +60,57 @@ public final class AddActividade extends javax.swing.JFrame{
         jComboBox2.addItem("Atletismo");
         clearAll();
         jComboBox2.addActionListener (new ActionListener () {
-                 @Override
-                 public void actionPerformed(ActionEvent e) {
-                 String s = jComboBox2.getSelectedItem().toString();
-                 if(s.equals("Caminhada") || s.equals("Atletismo") || s.equals("Natacao") || s.equals("Ciclismo")){
-                     clearAll();
-                     jLabel6.setVisible(true);                
-                     jTextPane4.setVisible(true);
-                 }
-                 if(s.equals("Futebol")){
-                     clearAll();
-                     jLabel8.setVisible(true);
-                     jTextPane6.setVisible(true);    
-                 }
-                if(s.equals("Voleibol")){
-                     clearAll();
-                     jLabel7.setVisible(true);
-                     jTextPane3.setVisible(true);    
-                 }
-                 if(s.equals("Basquetebol")){
-                     clearAll();
-                     jLabel9.setVisible(true);
-                     jTextPane7.setVisible(true);    
-                 }
-                 
-                 
-
-                     
-           
-                     
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String s = jComboBox2.getSelectedItem().toString();
+                if(s.equals("Caminhada") || s.equals("Atletismo") ||s.equals("Ciclismo")){
+                    clearAll();
+                    jLabel6.setVisible(true);
+                    jTextPane4.setVisible(true);
+                    getScrollPane(jTextPane4).setVisible(true);
+                    jTextPane8.setVisible(true);
+                    getScrollPane(jTextPane8).setVisible(true);
+                    jLabel10.setVisible(true);
                 }
-          });
+                if(s.equals("Futebol")){
+                    clearAll();
+                    jLabel8.setVisible(true);
+                    jTextPane6.setVisible(true);
+                    jLabel6.setVisible(true);
+                    jTextPane4.setVisible(true);
+                    getScrollPane(jTextPane4).setVisible(true);
+                    getScrollPane(jTextPane6).setVisible(true);
+                }
+                if(s.equals("Natação")){
+                    clearAll();
+                    jLabel6.setVisible(true);
+                    jTextPane4.setVisible(true);
+                    getScrollPane(jTextPane4).setVisible(true);
+                    
+                }
+                if(s.equals("Voleibol")){
+                    clearAll();
+                    jLabel7.setVisible(true);
+                    jTextPane3.setVisible(true);
+                    getScrollPane(jTextPane3).setVisible(true);
+                }
+                if(s.equals("Basquetebol")){
+                    clearAll();
+                    jLabel9.setVisible(true);
+                    jTextPane7.setVisible(true);
+                    jLabel6.setVisible(true);
+                    jTextPane4.setVisible(true);
+                    getScrollPane(jTextPane4).setVisible(true);
+                    getScrollPane(jTextPane7).setVisible(true);
+                }
+                
+                
+                
+                
+                
+                
+            }
+        });
         
     }
     
@@ -101,12 +121,17 @@ public final class AddActividade extends javax.swing.JFrame{
         jLabel9.setVisible(false);
         jLabel10.setVisible(false);
         jTextPane3.setVisible(false);
+        getScrollPane(jTextPane3).setVisible(false);
         jTextPane4.setVisible(false);
+        getScrollPane(jTextPane4).setVisible(false);
         jTextPane6.setVisible(false);
+        getScrollPane(jTextPane6).setVisible(false);
         jTextPane7.setVisible(false);
+        getScrollPane(jTextPane7).setVisible(false);
         jTextPane8.setVisible(false);
+        getScrollPane(jTextPane8).setVisible(false);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,7 +139,8 @@ public final class AddActividade extends javax.swing.JFrame{
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -159,8 +185,10 @@ public final class AddActividade extends javax.swing.JFrame{
 
         jComboBox2.setName("cb_desporto"); // NOI18N
         jComboBox2.setPreferredSize(new java.awt.Dimension(127, 23));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jComboBox2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jComboBox2ActionPerformed(evt);
             }
         });
@@ -207,8 +235,17 @@ public final class AddActividade extends javax.swing.JFrame{
 
         jButton1.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
         jButton1.setText("Adicionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                click(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -222,7 +259,7 @@ public final class AddActividade extends javax.swing.JFrame{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -249,7 +286,6 @@ public final class AddActividade extends javax.swing.JFrame{
                             .addComponent(jLabel6)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel12)
                             .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,13 +298,15 @@ public final class AddActividade extends javax.swing.JFrame{
                                         .addComponent(jScrollPane6)
                                         .addComponent(jLabel9)
                                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel10)))
+                                    .addComponent(jLabel10)
+                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(165, 165, 165))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton1)
-                                .addGap(22, 22, 22))))))
+                                .addGap(22, 22, 22))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +316,9 @@ public final class AddActividade extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -295,11 +335,9 @@ public final class AddActividade extends javax.swing.JFrame{
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
@@ -314,240 +352,122 @@ public final class AddActividade extends javax.swing.JFrame{
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(20, 20, 20))))
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-       /* switch((jComboBox2.getSelectedItem().toString()))
-        {
-            case "Natação" :
-                
-                jLabel6.setVisible(true);
-                jTextPane4.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel10.setVisible(false);
-                jLabel9.setVisible(false);
-                jTextPane3.setVisible(false);
-                getScrollPane(jTextPane3).setVisible(false);
-                jTextPane3.setVisible(false);
-                jTextPane6.setVisible(false);
-                getScrollPane(jTextPane6).setVisible(false);
-                jTextPane7.setVisible(false);
-                getScrollPane(jTextPane7).setVisible(false);
-                jTextPane8.setVisible(false);
-                getScrollPane(jTextPane8).setVisible(false);
-                
-                
-            case "Caminhada" :
-            
-                jLabel6.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(false);
-                jLabel10.setVisible(true);
-                jTextPane4.setVisible(true);
-                jTextPane3.setVisible(false);
-                getScrollPane(jTextPane3).setVisible(false);
-                jTextPane6.setVisible(false);
-                getScrollPane(jTextPane6).setVisible(false);
-                jTextPane7.setVisible(false);
-                getScrollPane(jTextPane7).setVisible(false);
-                jTextPane8.setVisible(true);
-            
-            
-            case "Atletismo" :
-            
-                jLabel6.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(false);
-                jLabel10.setVisible(true);
-                jLabel10.setVisible(false);
-                jTextPane3.setVisible(false);
-                getScrollPane(jTextPane3).setVisible(false);
-                jTextPane4.setVisible(true);
-                jTextPane6.setVisible(false);
-                getScrollPane(jTextPane6).setVisible(false);
-                jTextPane7.setVisible(false);
-                getScrollPane(jTextPane7).setVisible(false);
-                jTextPane8.setVisible(true);
-             
-            
-            case "Futebol" :
-            
-               jLabel6.setVisible(true);
-               jLabel7.setVisible(false);
-               jLabel8.setVisible(true);
-               jLabel9.setVisible(false);
-               jLabel10.setVisible(false); 
-               jTextPane4.setVisible(true);
-               jTextPane3.setVisible(false);
-               getScrollPane(jTextPane3).setVisible(false);
-               jTextPane6.setVisible(true);
-               jTextPane7.setVisible(false);
-               getScrollPane(jTextPane7).setVisible(false);
-               jTextPane8.setVisible(false);
-               getScrollPane(jTextPane8).setVisible(false);
-            
-            case "Ciclismo":
-            
-                jLabel6.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(false);
-                jLabel10.setVisible(true);
-                jTextPane4.setVisible(true);
-                jTextPane3.setVisible(false);
-                getScrollPane(jTextPane3).setVisible(false);
-                jTextPane6.setVisible(false);
-                getScrollPane(jTextPane6).setVisible(false);
-                jTextPane7.setVisible(false);
-                getScrollPane(jTextPane7).setVisible(false);
-                jTextPane8.setVisible(true);
-                
-            
-            case "Voleibol":
-            
-                jLabel6.setVisible(false);
-                jLabel7.setVisible(true);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(false);
-                jLabel10.setVisible(false);
-                jTextPane4.setVisible(false);
-                getScrollPane(jTextPane4).setVisible(false);
-                jTextPane3.setVisible(true);
-                jTextPane6.setVisible(false);
-                getScrollPane(jTextPane6).setVisible(false);
-                jTextPane7.setVisible(false);
-                getScrollPane(jTextPane7).setVisible(false);
-                jTextPane8.setVisible(false);
-                getScrollPane(jTextPane8).setVisible(false);
-
-            
-            case "Basquetebol":
-            
-                jLabel6.setVisible(true);
-                jLabel7.setVisible(false);
-                jLabel8.setVisible(false);
-                jLabel9.setVisible(true);
-                jLabel10.setVisible(false);
-                jTextPane3.setVisible(false);
-                getScrollPane(jTextPane3).setVisible(false);
-                jTextPane6.setVisible(false);
-                getScrollPane(jTextPane6).setVisible(false);
-                jTextPane4.setVisible(false);
-                jTextPane8.setVisible(false);
-                getScrollPane(jTextPane8).setVisible(false);
-                jTextPane7.setVisible(true);
-
-                   
-        }*/
+        // TODO add your handling code here
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        switch((jComboBox2.getSelectedItem().toString()))
-        {
-            case "Natação" :
-            Natacao natacao = new Natacao();
-            
-            natacao.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-            natacao.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
-            natacao.setCondMeteo(jTextPane1.getText());
-            natacao.setLocal(jTextPane5.getText());
-            natacao.setData(jTextPane2.getText());
-            
-            this.fitnessUM.adicionaActividade(natacao);
-                
-            case "Caminhada" :
-            Caminhada caminhada = new Caminhada();
- 
-            caminhada.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-            caminhada.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
-            caminhada.setCondMeteo(jTextPane1.getText());
-            caminhada.setLocal(jTextPane5.getText());
-            caminhada.setData(jTextPane2.getText());
-            caminhada.setAltitude((double)(Integer.parseInt(jTextPane8.getText())));
-            
-            this.fitnessUM.adicionaActividade(caminhada);
-            
-            case "Atletismo" :
-             
-            Atletismo atletismo = new Atletismo();
- 
-            atletismo.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-            atletismo.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
-            atletismo.setCondMeteo(jTextPane1.getText());
-            atletismo.setLocal(jTextPane5.getText());
-            atletismo.setData(jTextPane2.getText());
-            atletismo.setAltitude((double)(Integer.parseInt(jTextPane8.getText())));
-            
-            this.fitnessUM.adicionaActividade(atletismo);
-            
-                
-            
-            case "Futebol" :
-            
-            Futebol futebol = new Futebol();
- 
-            futebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-            futebol.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
-            futebol.setCondMeteo(jTextPane1.getText());
-            futebol.setLocal(jTextPane5.getText());
-            futebol.setData(jTextPane2.getText());
-            futebol.setGolos((Integer.parseInt(jTextPane6.getText())));
-            
-            this.fitnessUM.adicionaActividade(futebol); 
-            
-            case "Voleibol":
-            Voleibol voleibol = new Voleibol();
- 
-            voleibol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-            voleibol.setCondMeteo(jTextPane1.getText());
-            voleibol.setLocal(jTextPane5.getText());
-            voleibol.setData(jTextPane2.getText());
-            voleibol.setPontos((Integer.parseInt(jTextPane3.getText())));
-            
-            this.fitnessUM.adicionaActividade(voleibol);
-               
-            
-            case "Basquetebol":
-            
-            Basquetebol basquetebol = new Basquetebol();
- 
-            basquetebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-            basquetebol.setCondMeteo(jTextPane1.getText());
-            basquetebol.setLocal(jTextPane5.getText());
-            basquetebol.setData(jTextPane2.getText());
-            basquetebol.setCestos((Integer.parseInt(jTextPane7.getText())));
-            
-            this.fitnessUM.adicionaActividade(basquetebol);   
-                
-            new MenuUtilizador(this.fitnessUM).setVisible(true);
-            this.setVisible(false);
-                   
-        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    
+    private void click(java.awt.event.MouseEvent evt)//GEN-FIRST:event_click
+    {//GEN-HEADEREND:event_click
+        // TODO add your handling code here:
+      String s = jComboBox2.getSelectedItem().toString();
+                if(s.equals("Caminhada")){
+                    Caminhada caminhada = new Caminhada();
+                    
+                    caminhada.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+                    caminhada.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+                    caminhada.setCondMeteo(jTextPane1.getText());
+                    caminhada.setLocal(jTextPane5.getText());
+                    caminhada.setData(jTextPane2.getText());
+                    caminhada.setAltitude((double)(Integer.parseInt(jTextPane8.getText())));
+                    
+                    fitnessUM.adicionaActividade(caminhada);
+                }
+                if(s.equals("Futebol")){
+                    Futebol futebol = new Futebol();
+                    
+                    futebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+                    futebol.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+                    futebol.setCondMeteo(jTextPane1.getText());
+                    futebol.setLocal(jTextPane5.getText());
+                    futebol.setData(jTextPane2.getText());
+                    futebol.setGolos((Integer.parseInt(jTextPane6.getText())));
+                    
+                    fitnessUM.adicionaActividade(futebol);
+                }
+                if(s.equals("Natação")){
+                    
+                    Natacao natacao = new Natacao();
+                    
+                    natacao.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+                    natacao.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+                    natacao.setCondMeteo(jTextPane1.getText());
+                    natacao.setLocal(jTextPane5.getText());
+                    natacao.setData(jTextPane2.getText());
+                    
+                    fitnessUM.adicionaActividade(natacao);
+                }
+                
+                
+                if(s.equals("Voleibol")){
+                    Voleibol voleibol = new Voleibol();
+                    
+                    voleibol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+                    voleibol.setCondMeteo(jTextPane1.getText());
+                    voleibol.setLocal(jTextPane5.getText());
+                    voleibol.setData(jTextPane2.getText());
+                    voleibol.setPontos((Integer.parseInt(jTextPane3.getText())));
+                    
+                    fitnessUM.adicionaActividade(voleibol);
+                }
+                if(s.equals("Basquetebol")){
+                    Basquetebol basquetebol = new Basquetebol();
+                    
+                    basquetebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+                    basquetebol.setCondMeteo(jTextPane1.getText());
+                    basquetebol.setLocal(jTextPane5.getText());
+                    basquetebol.setData(jTextPane2.getText());
+                    basquetebol.setCestos((Integer.parseInt(jTextPane7.getText())));
+                    
+                    fitnessUM.adicionaActividade(basquetebol);
+                }
+                
+                if(s.equals("Ciclismo")){
+                    Ciclismo ciclismo = new Ciclismo();
+                    
+                    ciclismo.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+                    ciclismo.setCondMeteo(jTextPane1.getText());
+                    ciclismo.setLocal(jTextPane5.getText());
+                    ciclismo.setData(jTextPane2.getText());
+                    ciclismo.setAltitude((Integer.parseInt(jTextPane8.getText())));
+                    ciclismo.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+                    
+                    fitnessUM.adicionaActividade(ciclismo);
+                }
+                if(s.equals("Atletismo")){
+                    Atletismo atletismo = new Atletismo();
+                    
+                    atletismo.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+                    atletismo.setCondMeteo(jTextPane1.getText());
+                    atletismo.setLocal(jTextPane5.getText());
+                    atletismo.setData(jTextPane2.getText());
+                    atletismo.setAltitude((Integer.parseInt(jTextPane8.getText())));
+                    atletismo.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+                   
+                    
+                    fitnessUM.adicionaActividade(atletismo);
+                }
+                JOptionPane.showMessageDialog(null, "Actividade adicionada!");
+                this.setVisible(false);
+                new MenuUtilizador(fitnessUM).setVisible(true);
+    }//GEN-LAST:event_click
+                               
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -582,7 +502,7 @@ public final class AddActividade extends javax.swing.JFrame{
     private javax.swing.JTextPane jTextPane7;
     private javax.swing.JTextPane jTextPane8;
     // End of variables declaration//GEN-END:variables
-
-
-   
+    
+    
 }
+
