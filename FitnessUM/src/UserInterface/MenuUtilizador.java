@@ -3,11 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.TreeMap;
+import javax.swing.JOptionPane;
+import org.Actividade;
 import org.FitnessUM;
 import org.Utilizador;
 
@@ -21,11 +26,94 @@ public class MenuUtilizador extends javax.swing.JFrame {
      * Creates new form MenuUtilizador
      */
     FitnessUM fitnessUM;
-    
-    public MenuUtilizador(FitnessUM fitnessUM) {
+
+    public MenuUtilizador(final FitnessUM fitnessUM) {
         this.fitnessUM = fitnessUM;
         initComponents();
+        jLabel3.setVisible(false);
+        jButton1.setVisible(false);
+        jComboBox1.setVisible(false);
+        jComboBox2.setVisible(false);
+        jComboBox3.setVisible(false);
+        jComboBox5.setVisible(false);
         jLabel2.setText(this.fitnessUM.getUtilizadorLigado().getNome());
+        if (!this.fitnessUM.getUtilizadorLigado().getPedidosAmizade().isEmpty()) {
+            jLabel3.setVisible(true);
+            jButton1.setVisible(true);
+        }
+        jComboBox2.addItem("2014");
+        jComboBox2.addItem("2013");
+        jComboBox2.addItem("2012");
+        jComboBox2.addItem("2011");
+        jComboBox2.addItem("2010");
+        jComboBox3.addItem("Janeiro");
+        jComboBox3.addItem("Fevereiro");
+        jComboBox3.addItem("Marco");
+        jComboBox3.addItem("Abril");
+        jComboBox3.addItem("Maio");
+        jComboBox3.addItem("Junho");
+        jComboBox3.addItem("Julho");        
+        jComboBox3.addItem("Agosto");
+        jComboBox3.addItem("Setembro");
+        jComboBox3.addItem("Outubro");
+        jComboBox3.addItem("Novembro");
+        jComboBox3.addItem("Dezembro");
+        jComboBox5.addItem("Natacao");
+        jComboBox5.addItem("Caminhada");
+        jComboBox5.addItem("Futebol");
+        jComboBox5.addItem("Basquetebol");
+        jComboBox5.addItem("Voleibol");
+        jComboBox5.addItem("Ciclismo");
+        jComboBox5.addItem("Atletismo");
+        jComboBox2.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Utilizador u = fitnessUM.getUtilizadorLigado();
+                String s = jComboBox2.getSelectedItem().toString();
+                TreeMap<String, Actividade> actividadesPorAno = new TreeMap<>(u.actividadesAno(s));
+                if (actividadesPorAno.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Nao ha Actividades para esse ano");
+                } else {
+                    updateListView(actividadesPorAno);
+                }
+
+            }
+        });
+        jComboBox3.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Utilizador u = fitnessUM.getUtilizadorLigado();
+                String s = jComboBox3.getSelectedItem().toString();
+                TreeMap<String, Actividade> actividadesPorMes = new TreeMap<>(u.actividadesMes(s));
+                if (actividadesPorMes.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Nao ha Actividades para esse Mes");
+                } else {
+                    updateListView(actividadesPorMes);
+                }
+            }
+        });
+        jComboBox5.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              JOptionPane.showMessageDialog(null, "Nao Suportado :(");
+            }
+        });
+
+    }
+
+    private void updateListView(TreeMap<String, Actividade> listaActividade) {
+        List<String> aux1 = new ArrayList<>();
+        List<List<String>> aux = new ArrayList<>();
+        for (String s : listaActividade.keySet()) {
+            Actividade a = listaActividade.get(s);
+            aux1.add(a.toString());
+            aux.add(aux1);
+        }
+        jList1.setListData(aux.toArray());
+
     }
 
     /**
@@ -49,6 +137,10 @@ public class MenuUtilizador extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        jComboBox3 = new javax.swing.JComboBox();
+        jComboBox5 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +204,16 @@ public class MenuUtilizador extends javax.swing.JFrame {
 
         jComboBox1.setMaximumSize(new java.awt.Dimension(32767, 27));
 
+        jLabel3.setText("Tem Pedidos Novos");
+
+        jComboBox5.setName("cb_desporto"); // NOI18N
+        jComboBox5.setPreferredSize(new java.awt.Dimension(127, 23));
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,41 +222,62 @@ public class MenuUtilizador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(199, 199, 199)
-                                .addComponent(jLabel2))
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(93, 93, 93)
+                                .addComponent(jLabel2)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(92, 92, 92))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel2)
-                .addGap(16, 16, 16)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel2)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToggleButton1)
-                        .addGap(18, 18, 18)
                         .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jToggleButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
@@ -166,7 +289,7 @@ public class MenuUtilizador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton5))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,21 +309,21 @@ public class MenuUtilizador extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         ArrayList<Utilizador> pedidosAmizade = this.fitnessUM.getUtilizadorLigado().getPedidosAmizade();
+        ArrayList<Utilizador> pedidosAmizade = this.fitnessUM.getUtilizadorLigado().getPedidosAmizade();
         if (!pedidosAmizade.isEmpty()) {
             List<ArrayList<String>> aux = new ArrayList<>();
             int i;
             for (i = 0; i < pedidosAmizade.size(); i++) {
-                    ArrayList<String> aux1 =  new ArrayList<>();
-                    aux1.add(pedidosAmizade.get(i).getNome());
-                    aux1.add(pedidosAmizade.get(i).getEmail());
+                ArrayList<String> aux1 = new ArrayList<>();
+                aux1.add(pedidosAmizade.get(i).getNome());
+                aux1.add(pedidosAmizade.get(i).getEmail());
 
             }
-            
-                jList1.setListData(aux.toArray());  
+
+            jList1.setListData(aux.toArray());
     }//GEN-LAST:event_jButton1ActionPerformed
     }
-    
+
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         new AddAmigo(this.fitnessUM).setVisible(true);
@@ -213,26 +336,53 @@ public class MenuUtilizador extends javax.swing.JFrame {
             List<ArrayList<String>> aux = new ArrayList<>();
             int i;
             for (i = 0; i < amigos.size(); i++) {
-                    ArrayList<String> aux1 =  new ArrayList<>();
-                    aux1.add(amigos.get(i).getNome());
-                    aux1.add(amigos.get(i).getEmail());
+                ArrayList<String> aux1 = new ArrayList<>();
+                aux1.add(amigos.get(i).getNome());
+                aux1.add(amigos.get(i).getEmail());
 
             }
-            
-                jList1.setListData(aux.toArray());  
+
+            jList1.setListData(aux.toArray());
     }//GEN-LAST:event_jButton2ActionPerformed
     }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        jComboBox1.addItem("Mês");
         jComboBox1.addItem("Ano");
+        jComboBox1.addItem("Mes");
+        jComboBox1.addItem("Tipo");
+        jComboBox1.setVisible(true);
+        jComboBox1.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String s = jComboBox1.getSelectedItem().toString();
+                if (s.equals("Ano")) {
+                    jComboBox2.setVisible(true);
+                    jComboBox3.setVisible(false);
+                    jComboBox5.setVisible(false);
+                }
+                if (s.equals("Mes")) {
+                    jComboBox2.setVisible(false);
+                    jComboBox3.setVisible(true);
+                    jComboBox5.setVisible(false);
+                }
+                if (s.equals("Tipo")) {
+                    jComboBox2.setVisible(false);
+                    jComboBox3.setVisible(false);
+                    jComboBox5.setVisible(true);
+                }
+
+            }
+        });
     }//GEN-LAST:event_jButton4ActionPerformed
-    
+
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -242,8 +392,12 @@ public class MenuUtilizador extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
