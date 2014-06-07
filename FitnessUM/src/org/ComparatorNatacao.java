@@ -11,7 +11,7 @@ package org;
 import java.util.Comparator;
 import java.io.Serializable;
 
-public class ComparatorNatacao implements Comparator<Object>
+public class ComparatorNatacao implements Comparator<Object>,Serializable
 {
     public int compare(Object n1, Object n2)
     {

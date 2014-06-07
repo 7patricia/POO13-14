@@ -17,9 +17,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
-import javax.swing.JOptionPane;
 
-public class FitnessUM implements Serializable
+public final class FitnessUM implements Serializable
 { 
     // instance variables - replace the example below with your own
     protected ArrayList<Utilizador> registos;
@@ -28,11 +27,11 @@ public class FitnessUM implements Serializable
     public Administrador admin;
     
 
-    public FitnessUM()
+    public FitnessUM() throws FileNotFoundException, ClassNotFoundException
     {
         this.registos = new ArrayList<Utilizador>();
         this.eventos = new TreeMap<String,Evento>(new ComparatorData());
-        admin =  new Administrador();
+        /*admin =  new Administrador();
         admin.setEmail("admin");
         admin.setPassword("admin");
         admin.setNome("admin");
@@ -58,10 +57,10 @@ public class FitnessUM implements Serializable
         u1.addActividade(a1);
         u1.addActividade(a2);
         registos.add(u2);
-        registos.add(u1);
+        registos.add(u1);*/
        
         
-          
+        this.carrega("file.txt");
         this.utilizadorLigado = null;
 
     }
@@ -76,8 +75,9 @@ public class FitnessUM implements Serializable
         
 
     }
+    
 
-    public void setUtilizadorLigado(Utilizador u)
+    public void setUtilizadorLigado(Utilizador u) throws IOException
     {
         if(u!=null){
         this.utilizadorLigado = u; }
@@ -87,20 +87,20 @@ public class FitnessUM implements Serializable
         guarda("file.txt");
     }
     
-    public void setAdmin(Administrador a)
+    public void setAdmin(Administrador a) throws IOException
     {
         this.admin = a.clone(); 
         guarda("file.txt");
     }
 
-    public void setEventos(TreeMap<String,Evento> e)
+    public void setEventos(TreeMap<String,Evento> e) throws IOException
     {
         for(Evento even : e.values())
             this.eventos.put(even.getData(),even);
         guarda("file.txt");
     }
 
-    public void setRegistos(ArrayList<Utilizador> r)
+    public void setRegistos(ArrayList<Utilizador> r) throws IOException
     {
         for(int i=0;i<r.size()-1;i++)
             this.registos.add(r.get(i));
@@ -137,7 +137,7 @@ public class FitnessUM implements Serializable
      * @param pass
      * @return 
      **/
-    public boolean checkUser (String mail, String pass)
+    public boolean checkUser (String mail, String pass) throws IOException
     {
         int i;  
         int flag = 0;
@@ -145,7 +145,8 @@ public class FitnessUM implements Serializable
         {
             if(u.verificaDados(mail,pass) == true) {
                 utilizadorLigado = u;
-                guarda("file.txt");}
+                guarda("file.txt");
+            }
         }
         return utilizadorLigado != null;
         
@@ -158,7 +159,7 @@ public class FitnessUM implements Serializable
      * @param pass
      * @return 
      **/
-    public boolean checkAdmin (String mail, String pass)
+    public boolean checkAdmin (String mail, String pass) throws IOException
     {
         if(mail.equals("admin") && (pass.equals("admin")))
         {
@@ -181,7 +182,7 @@ public class FitnessUM implements Serializable
      * Função que verifica se um utilizador já está registado e se não estiver 
      * adiciona-o à lista de registos
      */
-    public boolean registar(String mail, String pass, String nome, String sexo, String dataNascimento, String desporto, String altura, String peso)
+    public boolean registar(String mail, String pass, String nome, String sexo, String dataNascimento, String desporto, String altura, String peso) throws IOException
     {
         if(checkUser(mail,pass) == true) return false;
         else 
@@ -206,7 +207,7 @@ public class FitnessUM implements Serializable
      * Função que verifica se um utilizador está registado e se sim remove-o da lista
      * de registos
      */
-    public boolean remover(String mail,String pass)
+    public boolean remover(String mail,String pass) throws IOException
     {
         if(checkUser(mail,pass) == true) 
         {
@@ -246,7 +247,7 @@ public class FitnessUM implements Serializable
     /**
      * Função que adiciona uma actividade à lista de atividades do utilizador ligado
      */
-    public void adicionaActividade(Actividade a)
+    public void adicionaActividade(Actividade a) throws IOException
     {
         utilizadorLigado.addActividade(a);
         guarda("file.txt");
@@ -255,7 +256,7 @@ public class FitnessUM implements Serializable
     /**
      * Função que remove uma actividade da lista de actividades do utilizador ligado
      */
-    public boolean removeActividade(Actividade a)
+    public boolean removeActividade(Actividade a) throws IOException
     {
         if(this.utilizadorLigado.getActividades().contains(a))
         {
@@ -305,7 +306,7 @@ public class FitnessUM implements Serializable
     /**
      * Função que permite ao utilizador ligado aceitar um pedido de amizade
      */
-    public void aceitarPedido(Utilizador pedinte)
+    public void aceitarPedido(Utilizador pedinte) throws IOException
     {
         this.utilizadorLigado.removePedido(pedinte);
         this.utilizadorLigado.adicionaAmigo(pedinte);
@@ -315,7 +316,7 @@ public class FitnessUM implements Serializable
     /**
      * Função que permite ao utilizador ligado rejeitar um pedido de amizade
      */
-    public void rejeitarPedido(Utilizador pedinte)
+    public void rejeitarPedido(Utilizador pedinte) throws IOException
     {
         this.utilizadorLigado.removePedido(pedinte);
         guarda("file.txt");
@@ -324,7 +325,7 @@ public class FitnessUM implements Serializable
     /**
      * Função que permite ao utilizador ligado fazer um pedido de amizade
      */
-    public void efectuarPedido(Utilizador futuroAmigo)
+    public void efectuarPedido(Utilizador futuroAmigo) throws IOException
     {
         futuroAmigo.adicionaPedido(this.utilizadorLigado);
         guarda("file.txt");
@@ -353,7 +354,7 @@ public class FitnessUM implements Serializable
      * @param 
      * @return 
      */
-    public boolean addEvento(Evento e)
+    public boolean addEvento(Evento e) throws IOException
       {
       if(this.eventos.containsKey(e))
           return false;
@@ -366,11 +367,10 @@ public class FitnessUM implements Serializable
       
       }
     
-    public void lerobjFitnessUM(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void lerobjFitnessUM(File fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(fileName);
 	ObjectInputStream ois = new ObjectInputStream(fis);
         
-        this.utilizadorLigado = (Utilizador) ois.readObject();
         this.registos = (ArrayList<Utilizador>) ois.readObject();
         this.admin = (Administrador) ois.readObject();
         this.eventos = (TreeMap<String,Evento>) ois.readObject();
@@ -379,26 +379,26 @@ public class FitnessUM implements Serializable
         fis.close();
     }
     
-    /** Metodo que escreve os clientes de um ficheiro*/
-    public void escreveobjFitnessUM(String fileName) throws FileNotFoundException, IOException {
-        FileOutputStream fos = new FileOutputStream(fileName);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        
-        oos.writeObject(this.utilizadorLigado);
-        oos.writeObject(this.registos);
-        oos.writeObject(this.admin);
-        oos.writeObject(this.eventos);
-        
-        oos.close();
-        fos.close();
+    /** Metodo que escreve os clientes de um ficheir
+     * @param fileName
+     * @throws java.io.FileNotFoundException*/
+    public void escreveobjFitnessUM(File fileName) throws FileNotFoundException, IOException {
+        try (FileOutputStream fos = new FileOutputStream(fileName); 
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            System.out.println("stuff");
+            oos.writeObject(this.registos);
+            oos.writeObject(this.admin);
+            oos.writeObject(this.eventos);
+            System.out.println("stuff");
+        }
     }
     
-    public void carrega(String file)
+    public void carrega(String file) throws FileNotFoundException, ClassNotFoundException
       {
         file = "file.txt";
+        File f = new File(file);
         try {
-            
-            escreveobjFitnessUM(file);
+            lerobjFitnessUM(f);
 
         } catch (IOException error) {
             System.out.println(error.getMessage());
@@ -406,17 +406,13 @@ public class FitnessUM implements Serializable
         
       }
     
-    public void guarda(String file)
+    public void guarda(String file) throws IOException
       {
-      file = "file.txt";
+       file = "file.txt";
+       System.out.println("stuff");
        File f = new File(file);
-        try {
-            
-            lerobjFitnessUM(file);
-
-        } catch (Exception error) {
-            System.out.println(error.getMessage());
-        }
+       System.out.println("stuff");
+       escreveobjFitnessUM(f);
       }
 
     //Equals e clone

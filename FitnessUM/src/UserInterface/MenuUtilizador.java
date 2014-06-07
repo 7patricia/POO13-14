@@ -8,9 +8,12 @@ package UserInterface;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -611,10 +614,14 @@ public class MenuUtilizador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        fitnessUM.setUtilizadorLigado(null);
-        new MainMenu(fitnessUM).setVisible(true);
+        try {
+            // TODO add your handling code here:
+            this.setVisible(false);
+            fitnessUM.setUtilizadorLigado(null);
+            new MainMenu(fitnessUM).setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuUtilizador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

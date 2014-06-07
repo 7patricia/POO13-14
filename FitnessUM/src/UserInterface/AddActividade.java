@@ -9,6 +9,9 @@ package UserInterface;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -378,90 +381,117 @@ public final class AddActividade extends javax.swing.JFrame{
         // TODO add your handling code here:
       String s = jComboBox2.getSelectedItem().toString();
                 if(s.equals("Caminhada")){
-                    Caminhada caminhada = new Caminhada();
-                    
-                    caminhada.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-                    caminhada.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
-                    caminhada.setCondMeteo(jTextPane1.getText());
-                    caminhada.setLocal(jTextPane5.getText());
-                    caminhada.setData(jTextPane2.getText());
-                    caminhada.setAltitude((double)(Integer.parseInt(jTextPane8.getText())));
-                    
-                    fitnessUM.adicionaActividade(caminhada);
+          try {
+              Caminhada caminhada = new Caminhada();
+              
+              caminhada.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+              caminhada.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+              caminhada.setCondMeteo(jTextPane1.getText());
+              caminhada.setLocal(jTextPane5.getText());
+              caminhada.setData(jTextPane2.getText());
+              caminhada.setAltitude((double)(Integer.parseInt(jTextPane8.getText())));
+              
+              fitnessUM.adicionaActividade(caminhada);
+          } catch (IOException ex) {
+              Logger.getLogger(AddActividade.class.getName()).log(Level.SEVERE, null, ex);
+          }
                 }
                 if(s.equals("Futebol")){
-                    Futebol futebol = new Futebol();
-                    
-                    futebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-                    futebol.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
-                    futebol.setCondMeteo(jTextPane1.getText());
-                    futebol.setLocal(jTextPane5.getText());
-                    futebol.setData(jTextPane2.getText());
-                    futebol.setGolos((Integer.parseInt(jTextPane6.getText())));
-                    
-                    fitnessUM.adicionaActividade(futebol);
+          try {
+              Futebol futebol = new Futebol();
+              
+              futebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+              futebol.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+              futebol.setCondMeteo(jTextPane1.getText());
+              futebol.setLocal(jTextPane5.getText());
+              futebol.setData(jTextPane2.getText());
+              futebol.setGolos((Integer.parseInt(jTextPane6.getText())));
+              
+              fitnessUM.adicionaActividade(futebol);
+          } catch (IOException ex) {
+              Logger.getLogger(AddActividade.class.getName()).log(Level.SEVERE, null, ex);
+          }
                 }
                 if(s.equals("Natação")){
-                    
-                    Natacao natacao = new Natacao();
-                    
-                    natacao.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-                    natacao.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
-                    natacao.setCondMeteo(jTextPane1.getText());
-                    natacao.setLocal(jTextPane5.getText());
-                    natacao.setData(jTextPane2.getText());
-                    
-                    fitnessUM.adicionaActividade(natacao);
+          try {
+              Natacao natacao = new Natacao();
+              
+              natacao.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+              natacao.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+              natacao.setCondMeteo(jTextPane1.getText());
+              natacao.setLocal(jTextPane5.getText());
+              natacao.setData(jTextPane2.getText());
+              
+              fitnessUM.adicionaActividade(natacao);
+          } catch (IOException ex) {
+              Logger.getLogger(AddActividade.class.getName()).log(Level.SEVERE, null, ex);
+          }
                 }
                 
                 
                 if(s.equals("Voleibol")){
-                    Voleibol voleibol = new Voleibol();
-                    
-                    voleibol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-                    voleibol.setCondMeteo(jTextPane1.getText());
-                    voleibol.setLocal(jTextPane5.getText());
-                    voleibol.setData(jTextPane2.getText());
-                    voleibol.setPontos((Integer.parseInt(jTextPane3.getText())));
-                    
-                    fitnessUM.adicionaActividade(voleibol);
+          try {
+              Voleibol voleibol = new Voleibol();
+              
+              voleibol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+              voleibol.setCondMeteo(jTextPane1.getText());
+              voleibol.setLocal(jTextPane5.getText());
+              voleibol.setData(jTextPane2.getText());
+              voleibol.setPontos((Integer.parseInt(jTextPane3.getText())));
+              
+              fitnessUM.adicionaActividade(voleibol);
+          } catch (IOException ex) {
+              Logger.getLogger(AddActividade.class.getName()).log(Level.SEVERE, null, ex);
+          }
                 }
                 if(s.equals("Basquetebol")){
-                    Basquetebol basquetebol = new Basquetebol();
-                    
-                    basquetebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-                    basquetebol.setCondMeteo(jTextPane1.getText());
-                    basquetebol.setLocal(jTextPane5.getText());
-                    basquetebol.setData(jTextPane2.getText());
-                    basquetebol.setCestos((Integer.parseInt(jTextPane7.getText())));
-                    
-                    fitnessUM.adicionaActividade(basquetebol);
+          try {
+              Basquetebol basquetebol = new Basquetebol();
+              
+              basquetebol.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+              basquetebol.setCondMeteo(jTextPane1.getText());
+              basquetebol.setLocal(jTextPane5.getText());
+              basquetebol.setData(jTextPane2.getText());
+              basquetebol.setCestos((Integer.parseInt(jTextPane7.getText())));
+              
+              fitnessUM.adicionaActividade(basquetebol);
+          } catch (IOException ex) {
+              Logger.getLogger(AddActividade.class.getName()).log(Level.SEVERE, null, ex);
+          }
                 }
                 
                 if(s.equals("Ciclismo")){
-                    Ciclismo ciclismo = new Ciclismo();
-                    
-                    ciclismo.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-                    ciclismo.setCondMeteo(jTextPane1.getText());
-                    ciclismo.setLocal(jTextPane5.getText());
-                    ciclismo.setData(jTextPane2.getText());
-                    ciclismo.setAltitude((Integer.parseInt(jTextPane8.getText())));
-                    ciclismo.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
-                    
-                    fitnessUM.adicionaActividade(ciclismo);
+          try {
+              Ciclismo ciclismo = new Ciclismo();
+              
+              ciclismo.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+              ciclismo.setCondMeteo(jTextPane1.getText());
+              ciclismo.setLocal(jTextPane5.getText());
+              ciclismo.setData(jTextPane2.getText());
+              ciclismo.setAltitude((Integer.parseInt(jTextPane8.getText())));
+              ciclismo.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+              
+              fitnessUM.adicionaActividade(ciclismo);
+          } catch (IOException ex) {
+              Logger.getLogger(AddActividade.class.getName()).log(Level.SEVERE, null, ex);
+          }
                 }
                 if(s.equals("Atletismo")){
-                    Atletismo atletismo = new Atletismo();
-                    
-                    atletismo.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
-                    atletismo.setCondMeteo(jTextPane1.getText());
-                    atletismo.setLocal(jTextPane5.getText());
-                    atletismo.setData(jTextPane2.getText());
-                    atletismo.setAltitude((Integer.parseInt(jTextPane8.getText())));
-                    atletismo.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
-                   
-                    
-                    fitnessUM.adicionaActividade(atletismo);
+          try {
+              Atletismo atletismo = new Atletismo();
+              
+              atletismo.setDuracao((long)(Integer.parseInt(jTextPane10.getText())));
+              atletismo.setCondMeteo(jTextPane1.getText());
+              atletismo.setLocal(jTextPane5.getText());
+              atletismo.setData(jTextPane2.getText());
+              atletismo.setAltitude((Integer.parseInt(jTextPane8.getText())));
+              atletismo.setDistancia((double)(Integer.parseInt(jTextPane4.getText())));
+              
+              
+              fitnessUM.adicionaActividade(atletismo);
+          } catch (IOException ex) {
+              Logger.getLogger(AddActividade.class.getName()).log(Level.SEVERE, null, ex);
+          }
                 }
                 JOptionPane.showMessageDialog(null, "Actividade adicionada!");
                 this.setVisible(false);

@@ -6,6 +6,9 @@
 
 package UserInterface;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.FitnessUM;
 
@@ -213,23 +216,27 @@ public class Registar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String mail = jTextPane1.getText();
-        String nome = jTextPane2.getText();
-        String dataNascimento = jTextPane3.getText();
-        String altura = jTextPane4.getText();
-        String peso = jTextPane5.getText();
-        String password = jPasswordField1.getText();
-        String sexo = jComboBox1.getSelectedItem().toString();
-        String desporto = jComboBox2.getSelectedItem().toString();
-        boolean aux = this.fitnessUM.registar(mail, password, nome, sexo, dataNascimento, desporto, altura, peso);
-        if( aux == false){
-          JOptionPane.showMessageDialog(null, "Dados incorrectos");
-        }
-        else{
-          JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
-          new MainMenu(this.fitnessUM).setVisible(true);
-          this.setVisible(false);
+        try {
+            // TODO add your handling code here:
+            String mail = jTextPane1.getText();
+            String nome = jTextPane2.getText();
+            String dataNascimento = jTextPane3.getText();
+            String altura = jTextPane4.getText();
+            String peso = jTextPane5.getText();
+            String password = jPasswordField1.getText();
+            String sexo = jComboBox1.getSelectedItem().toString();
+            String desporto = jComboBox2.getSelectedItem().toString();
+            boolean aux = this.fitnessUM.registar(mail, password, nome, sexo, dataNascimento, desporto, altura, peso);
+            if( aux == false){
+                JOptionPane.showMessageDialog(null, "Dados incorrectos");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
+                new MainMenu(this.fitnessUM).setVisible(true);
+                this.setVisible(false);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Registar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

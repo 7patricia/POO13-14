@@ -6,7 +6,10 @@
 
 package UserInterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.Evento;
 import org.FitnessUM;
@@ -164,28 +167,31 @@ public class AddEvento extends javax.swing.JFrame
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-      Evento novo = new Evento();
-      novo.setNome(jTextPane1.getText());
-      novo.setData(jTextPane2.getText());
-      novo.setTipo(jComboBox1.getSelectedItem().toString());
-      novo.setDataLim(jTextPane3.getText());
-      novo.setNumLimite(Integer.parseInt(jTextPane4.getText())); 
-      novo.setInscritos(new ArrayList<Utilizador>());
-      novo.setPedidosInscricao(new ArrayList<Utilizador>());
-      
-      boolean aux = this.fitnessUM.addEvento(novo);
-      
-      if(aux == true)
-      {
-          JOptionPane.showMessageDialog(null, "Evento adicionado!");
-          new MenuAdmin(this.fitnessUM).setVisible(true);
-          this.setVisible(false);
-      }
-      else 
-      {
-         JOptionPane.showMessageDialog(null, "Impossivel adicionar Evento"); 
-      }
+        try {
+            // TODO add your handling code here:
+            Evento novo = new Evento();
+            novo.setNome(jTextPane1.getText());
+            novo.setData(jTextPane2.getText());
+            novo.setTipo(jComboBox1.getSelectedItem().toString());
+            novo.setDataLim(jTextPane3.getText());
+            novo.setNumLimite(Integer.parseInt(jTextPane4.getText()));
+            novo.setInscritos(new ArrayList<Utilizador>());
+            novo.setPedidosInscricao(new ArrayList<Utilizador>());
+            
+            boolean aux = this.fitnessUM.addEvento(novo);
+            
+            if(aux == true)
+            {
+                JOptionPane.showMessageDialog(null, "Evento adicionado!");
+                new MenuAdmin(this.fitnessUM).setVisible(true);
+                this.setVisible(false);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Impossivel adicionar Evento");
+            } } catch (IOException ex) {
+            Logger.getLogger(AddEvento.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -5,6 +5,10 @@
  */
 
 package UserInterface;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.FitnessUM;
 
@@ -135,27 +139,31 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1login(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1login
-        // TODO add your handling code here:
-        String mail = jTextPane1.getText();
-        String password = jPasswordField1.getText();
-        
-        boolean aux1 = fitnessUM.checkAdmin(mail, password);
-        if(aux1 != false)
-        {
-            JOptionPane.showMessageDialog(null, "Administrador logado com sucesso"); 
-            new MenuAdmin(this.fitnessUM).setVisible(true);
+        try {
+            // TODO add your handling code here:
+            String mail = jTextPane1.getText();
+            String password = jPasswordField1.getText();
             
-        }
-        else {
-        boolean aux = fitnessUM.checkUser(mail,password);
-        if(aux == true){
-            JOptionPane.showMessageDialog(null, "Logado com sucesso");
-            this.setVisible(false);
-            new MenuUtilizador(this.fitnessUM).setVisible(true);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Dados incorrectos");
-        }
+            boolean aux1 = fitnessUM.checkAdmin(mail, password);
+            if(aux1 == true)
+            {
+                JOptionPane.showMessageDialog(null, "Administrador logado com sucesso");
+                new MenuAdmin(this.fitnessUM).setVisible(true);
+                
+            }
+            else {
+                boolean aux = fitnessUM.checkUser(mail,password);
+                if(aux == true){
+                    JOptionPane.showMessageDialog(null, "Logado com sucesso");
+                    this.setVisible(false);
+                    new MenuUtilizador(this.fitnessUM).setVisible(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Dados incorrectos");
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1login
 
@@ -204,7 +212,13 @@ public class MainMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainMenu(new FitnessUM()).setVisible(true);
+                try {
+                    new MainMenu(new FitnessUM()).setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
