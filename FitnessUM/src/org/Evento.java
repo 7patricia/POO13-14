@@ -149,14 +149,27 @@ public class Evento  implements Serializable
         
       }
     
+    public boolean addInscrito(Utilizador u)
+      {
+        if(this.inscritos.contains(u))
+            return false;
+        else{
+            this.inscritos.add(u);
+            this.pedidosInscricao.remove(u);
+            u.adicionaInscrito(this);
+            return true;
+        } 
+        
+      }
+    
 
     
     
     //ToString Equals e Clone
     public String toString()
     {
-        StringBuilder s = new StringBuilder("Evento: \n");
-        s.append(this.nome).append("\n Data: ").append(this.data).append("\n Data Limite de Inscrição: ").append(this.dataLim).append("\n Vagas: \n").append(this.numLimite-this.inscritos.size());
+        StringBuilder s = new StringBuilder();
+        s.append(this.nome).append("\n ,Data: ").append(this.data).append("\n ,Data Limite de Inscrição: ").append(this.dataLim).append("\n ,Vagas:").append(this.numLimite-this.inscritos.size());
         for(Utilizador u : inscritos)
         {
             s.append(u.toString());

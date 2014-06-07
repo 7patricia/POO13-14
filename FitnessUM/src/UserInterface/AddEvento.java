@@ -78,8 +78,6 @@ public class AddEvento extends javax.swing.JFrame
         jLabel3.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
         jLabel3.setText("Tipo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel4.setFont(new java.awt.Font("Droid Sans", 0, 14)); // NOI18N
         jLabel4.setText("Data");
 

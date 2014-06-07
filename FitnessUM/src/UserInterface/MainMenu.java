@@ -144,7 +144,7 @@ public class MainMenu extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "Administrador logado com sucesso"); 
             new MenuAdmin(this.fitnessUM).setVisible(true);
-            this.setVisible(false);
+            
         }
         else {
         boolean aux = fitnessUM.checkUser(mail,password);

@@ -7,9 +7,17 @@ package org;
  * @author (your name) 
  * @version (a version number or a date)
  */
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeMap;
+import javax.swing.JOptionPane;
 
 public class FitnessUM implements Serializable
 { 
@@ -51,6 +59,7 @@ public class FitnessUM implements Serializable
         u1.addActividade(a2);
         registos.add(u2);
         registos.add(u1);
+       
         
           
         this.utilizadorLigado = null;
@@ -64,6 +73,7 @@ public class FitnessUM implements Serializable
         this.utilizadorLigado = u;
         this.admin = a;
         
+        
 
     }
 
@@ -74,23 +84,27 @@ public class FitnessUM implements Serializable
         else{
             this.utilizadorLigado = null;
         }
+        guarda("file.txt");
     }
     
     public void setAdmin(Administrador a)
     {
         this.admin = a.clone(); 
+        guarda("file.txt");
     }
 
     public void setEventos(TreeMap<String,Evento> e)
     {
         for(Evento even : e.values())
             this.eventos.put(even.getData(),even);
+        guarda("file.txt");
     }
 
     public void setRegistos(ArrayList<Utilizador> r)
     {
         for(int i=0;i<r.size()-1;i++)
             this.registos.add(r.get(i));
+        guarda("file.txt");
     }
 
     public Utilizador getUtilizadorLigado()
@@ -129,9 +143,12 @@ public class FitnessUM implements Serializable
         int flag = 0;
         for(Utilizador u : registos)
         {
-            if(u.verificaDados(mail,pass) == true) utilizadorLigado = u;
+            if(u.verificaDados(mail,pass) == true) {
+                utilizadorLigado = u;
+                guarda("file.txt");}
         }
         return utilizadorLigado != null;
+        
     }
     
      /**
@@ -147,11 +164,14 @@ public class FitnessUM implements Serializable
         {
             Administrador a = new Administrador("admin", "admin", "admin");
             this.admin = a;
+            guarda("file.txt");
             return true;
             
         }
         else
+            guarda("file.txt");
             return false;
+        
             
     }
     
@@ -177,6 +197,7 @@ public class FitnessUM implements Serializable
             novo.setPeso((double)(Integer.parseInt(peso)));
             
             registos.add(novo);
+            guarda("file.txt");
             return true;
         }
     }
@@ -190,6 +211,7 @@ public class FitnessUM implements Serializable
         if(checkUser(mail,pass) == true) 
         {
             registos.remove(userIndice(mail,pass)) ;
+            guarda("file.txt");
             return true;
         }
         else return false;
@@ -227,6 +249,7 @@ public class FitnessUM implements Serializable
     public void adicionaActividade(Actividade a)
     {
         utilizadorLigado.addActividade(a);
+        guarda("file.txt");
     }
 
     /**
@@ -237,6 +260,7 @@ public class FitnessUM implements Serializable
         if(this.utilizadorLigado.getActividades().contains(a))
         {
             this.utilizadorLigado.remAct(a);
+            guarda("file.txt");
             return true;
         }
         else
@@ -285,6 +309,7 @@ public class FitnessUM implements Serializable
     {
         this.utilizadorLigado.removePedido(pedinte);
         this.utilizadorLigado.adicionaAmigo(pedinte);
+        guarda("file.txt");
     }
 
     /**
@@ -293,6 +318,7 @@ public class FitnessUM implements Serializable
     public void rejeitarPedido(Utilizador pedinte)
     {
         this.utilizadorLigado.removePedido(pedinte);
+        guarda("file.txt");
     }
 
     /**
@@ -301,6 +327,7 @@ public class FitnessUM implements Serializable
     public void efectuarPedido(Utilizador futuroAmigo)
     {
         futuroAmigo.adicionaPedido(this.utilizadorLigado);
+        guarda("file.txt");
     }
 
     /**
@@ -309,6 +336,7 @@ public class FitnessUM implements Serializable
     public TreeMap<String,Actividade> mes (String mes)
     {
         return utilizadorLigado.actividadesMes(mes);
+       
     }
 
     /**
@@ -317,6 +345,7 @@ public class FitnessUM implements Serializable
     public TreeMap<String,Actividade> ano (String ano)
     {
         return utilizadorLigado.actividadesAno(ano);
+        
     }
     
     /**
@@ -331,9 +360,63 @@ public class FitnessUM implements Serializable
       else
       {
           this.eventos.put(e.getData(),e.clone());
+          guarda("file.txt");
           return true;
       }
       
+      }
+    
+    public void lerobjFitnessUM(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(fileName);
+	ObjectInputStream ois = new ObjectInputStream(fis);
+        
+        this.utilizadorLigado = (Utilizador) ois.readObject();
+        this.registos = (ArrayList<Utilizador>) ois.readObject();
+        this.admin = (Administrador) ois.readObject();
+        this.eventos = (TreeMap<String,Evento>) ois.readObject();
+        
+        ois.close();
+        fis.close();
+    }
+    
+    /** Metodo que escreve os clientes de um ficheiro*/
+    public void escreveobjFitnessUM(String fileName) throws FileNotFoundException, IOException {
+        FileOutputStream fos = new FileOutputStream(fileName);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        
+        oos.writeObject(this.utilizadorLigado);
+        oos.writeObject(this.registos);
+        oos.writeObject(this.admin);
+        oos.writeObject(this.eventos);
+        
+        oos.close();
+        fos.close();
+    }
+    
+    public void carrega(String file)
+      {
+        file = "file.txt";
+        try {
+            
+            escreveobjFitnessUM(file);
+
+        } catch (IOException error) {
+            System.out.println(error.getMessage());
+        }
+        
+      }
+    
+    public void guarda(String file)
+      {
+      file = "file.txt";
+       File f = new File(file);
+        try {
+            
+            lerobjFitnessUM(file);
+
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
       }
 
     //Equals e clone

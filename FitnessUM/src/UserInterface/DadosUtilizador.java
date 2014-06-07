@@ -68,7 +68,8 @@ public class DadosUtilizador extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -138,11 +139,6 @@ public class DadosUtilizador extends javax.swing.JFrame {
 
         jLabel14.setText("Últimas Actividades");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "item 1", "item 2" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel18.setText("Email");
@@ -160,8 +156,10 @@ public class DadosUtilizador extends javax.swing.JFrame {
         jLabel24.setText("Desp. Fav.");
 
         jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton1ActionPerformed(evt);
             }
         });
