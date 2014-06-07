@@ -8,10 +8,7 @@ package UserInterface;
 import javax.swing.JOptionPane;
 import org.FitnessUM;
 
-/**
- *
- * @author rafaelremondes
- */
+
 public class MainMenu extends javax.swing.JFrame {
 
     /**
@@ -142,10 +139,13 @@ public class MainMenu extends javax.swing.JFrame {
         String mail = jTextPane1.getText();
         String password = jPasswordField1.getText();
         
-        if((jTextPane1.getText().equals("admin")) && (jPasswordField1.getText().equals("admin"))){
-            JOptionPane.showMessageDialog(null, "Administrador logado com sucesso!");
+        boolean aux1 = fitnessUM.checkAdmin(mail, password);
+        if(aux1 != false)
+        {
+            JOptionPane.showMessageDialog(null, "Administrador logado com sucesso"); 
             new MenuAdmin(this.fitnessUM).setVisible(true);
-            this.setVisible(false);}
+            this.setVisible(false);
+        }
         else {
         boolean aux = fitnessUM.checkUser(mail,password);
         if(aux == true){

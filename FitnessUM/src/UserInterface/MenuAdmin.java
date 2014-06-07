@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import org.Actividade;
+import org.Administrador;
 import org.Evento;
 import org.FitnessUM;
 
@@ -24,6 +25,7 @@ public class MenuAdmin extends javax.swing.JFrame
      * Creates new form MenuAdmin
      */
     FitnessUM fitnessUM;
+    Administrador admin;
 
     /**
      *
@@ -34,10 +36,11 @@ public class MenuAdmin extends javax.swing.JFrame
         
         this.fitnessUM = fitnessUM;
         initComponents();
-        jLabel2.setText(fitnessUM.getAdmin().getNome());
+        jLabel2.setText(fitnessUM.admin.getNome());
         
         TreeMap<String, Evento> eventos = new TreeMap<>(this.fitnessUM.getEventos());
-        updateListView(eventos);
+        if(!eventos.isEmpty())   
+            updateListView(eventos);
         
       }
     

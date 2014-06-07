@@ -155,7 +155,7 @@ public class Evento
     public String toString()
     {
         StringBuilder s = new StringBuilder("Evento: \n");
-        s.append(this.nome).append("\n Data: ").append(this.data).append("\n Data Limite de Inscrição: ").append(this.dataLim).append("\n Lista de Inscritos: \n");
+        s.append(this.nome).append("\n Data: ").append(this.data).append("\n Data Limite de Inscrição: ").append(this.dataLim).append("\n Vagas: \n").append(this.numLimite-this.inscritos.size());
         for(Utilizador u : inscritos)
         {
             s.append(u.toString());
