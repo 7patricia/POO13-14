@@ -17,7 +17,9 @@ public class Evento
     private int numLimite;
     private String dataLim;
     private String tipo;
+    private ArrayList<Utilizador> pedidosInscricao;
     //Construtores
+    
     public Evento()
     {
         this.nome = "";
@@ -26,9 +28,10 @@ public class Evento
         this.numLimite = 0;
         this.dataLim = "";
         this.tipo="";
+        this.pedidosInscricao = new ArrayList<Utilizador>();
     }
 
-    public Evento(String n, String d, ArrayList<Utilizador> i, int x, String dl,String tipo)
+    public Evento(String n, String d, ArrayList<Utilizador> i, int x, String dl,String tipo, ArrayList<Utilizador> p)
     {
         this.nome = n;
         this.data = d;
@@ -36,11 +39,12 @@ public class Evento
         this.numLimite = x;
         this.dataLim = dl;
         this.tipo = tipo;
+        this.pedidosInscricao = p;
     }
 
     public Evento(Evento e)
     {
-        this(e.getNome(), e.getData(), e.getInscritos(), e.getNumLimite(), e.getDataLim(), e.getTipo());
+        this(e.getNome(), e.getData(), e.getInscritos(), e.getNumLimite(), e.getDataLim(), e.getTipo(), e.getPedidosInscricao());
     }
     //Métodos de Instância
     public String getNome()
@@ -62,6 +66,14 @@ public class Evento
     {
         ArrayList<Utilizador> res = new ArrayList<Utilizador>();
         for (Utilizador u : this.inscritos)
+            res.add(u.clone());
+        return res;
+    }  
+    
+     public ArrayList<Utilizador> getPedidosInscricao()
+    {
+        ArrayList<Utilizador> res = new ArrayList<Utilizador>();
+        for (Utilizador u : this.pedidosInscricao)
             res.add(u.clone());
         return res;
     }  
@@ -99,6 +111,15 @@ public class Evento
             this.inscritos.add(inscricoes.get(i));
         }
     }
+    
+    public void setPedidosInscricao(ArrayList<Utilizador> pedidos)
+    {
+        int i;
+        for(i=0;i<pedidos.size()-1;i++)
+        {
+            this.pedidosInscricao.add(pedidos.get(i));
+        }
+    }
 
     public void setNumLimite(int i)
     {
@@ -109,6 +130,24 @@ public class Evento
     {
         this.dataLim = d;
     }
+    
+    /**
+     * Função para adicionar um utilizador aos pedidos de inscricao
+     * @param u
+     * @return 
+     */
+    public boolean addPedido(Utilizador u)
+      {
+        if(this.pedidosInscricao.contains(u))
+            return false;
+        else{
+            this.pedidosInscricao.add(u);
+            u.adicionaPendente(this);
+            return true;
+        } 
+        
+      }
+    
 
     
     
@@ -132,11 +171,11 @@ public class Evento
             return false;
         Evento e = (Evento) o;
 
-        return ((e.getNome() == this.nome) && (e.getData() == this.data) && (this.inscritos.equals(e.getInscritos())));
+        return ((e.getNome() == this.nome) && (e.getData() == this.data) && (this.pedidosInscricao.equals(e.getPedidosInscricao()) && this.inscritos.equals(e.getInscritos())));
     }
 
     public Evento clone() 
     {
-        return new Evento(this.nome, this.data, this.inscritos, this.numLimite, this.dataLim, this.tipo);
+        return new Evento(this.nome, this.data, this.inscritos, this.numLimite, this.dataLim, this.tipo,this.pedidosInscricao);
     }
 }

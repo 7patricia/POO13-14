@@ -16,12 +16,18 @@ public class FitnessUM
     protected ArrayList<Utilizador> registos;
     protected TreeMap<String,Evento> eventos;
     protected Utilizador utilizadorLigado;
+    protected Administrador admin;
+    
 
     public FitnessUM()
     {
         this.registos = new ArrayList<Utilizador>();
         this.eventos = new TreeMap<String,Evento>(new ComparatorData());
         Utilizador u1 = new Utilizador();
+        Administrador a =  new Administrador();
+        a.setEmail("admin");
+        a.setPassword("admin");
+        a.setNome("admin");
         u1.setEmail("dummy@dummy.com");
         u1.setNome("dummy");
         u1.setPassword("um123");
@@ -50,11 +56,12 @@ public class FitnessUM
 
     }
 
-    public FitnessUM(ArrayList<Utilizador> r, TreeMap<String,Evento> e, Utilizador u)
+    public FitnessUM(ArrayList<Utilizador> r, TreeMap<String,Evento> e, Utilizador u, Administrador a)
     {
         this.registos = new ArrayList<Utilizador>(r);
         this.eventos = new TreeMap<String,Evento>(e);
         this.utilizadorLigado = u;
+        this.admin = a;
         
 
     }
@@ -62,6 +69,11 @@ public class FitnessUM
     public void setUtilizadorLigado(Utilizador u)
     {
         this.utilizadorLigado = u.clone(); 
+    }
+    
+    public void setAdmin(Administrador a)
+    {
+        this.admin = a.clone(); 
     }
 
     public void setEventos(TreeMap<String,Evento> e)
@@ -79,6 +91,11 @@ public class FitnessUM
     public Utilizador getUtilizadorLigado()
     {
         return this.utilizadorLigado;
+    }
+    
+    public Administrador getAdmin()
+    {
+        return this.admin;
     }
 
     public ArrayList<Utilizador> getRegistos()
@@ -280,6 +297,23 @@ public class FitnessUM
     {
         return utilizadorLigado.actividadesAno(ano);
     }
+    
+    /**
+     * Função que adiciona um evento à lista
+     * @param 
+     * @return 
+     */
+    public boolean addEvento(Evento e)
+      {
+      if(this.eventos.containsKey(e))
+          return false;
+      else
+      {
+          this.eventos.put(e.getData(),e.clone());
+          return true;
+      }
+      
+      }
 
     //Equals e clone
 
@@ -296,7 +330,7 @@ public class FitnessUM
     public FitnessUM clone()
 
     {
-        return new FitnessUM(this.registos, this.eventos, this.utilizadorLigado);
+        return new FitnessUM(this.registos, this.eventos, this.utilizadorLigado, this.admin);
     }
 }
 
